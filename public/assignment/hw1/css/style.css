@@ -9,6 +9,11 @@ p.navbar-text.pull-right {
     margin-right: 15px;
 }
 
+span.glyphicon {
+    color: black;
+}
+
 span.glyphicon-user {
     color: royalblue;
 }
+
