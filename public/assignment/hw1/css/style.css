@@ -17,3 +17,6 @@ span.glyphicon-user {
     color: royalblue;
 }
 
+label a:link{
+    text-decoration: none;
+}
