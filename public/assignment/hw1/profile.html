@@ -6,19 +6,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
     <title>Profile</title>
 </head>
 <body>
-<form>
+
+
+
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="">Profile</a>
-            </div>
-            <div>
+            <div class="navbar-inner">
+                <a class="navbar-brand">Profile</a>
                 <p class="navbar-text pull-right">
                     <a href="profile.html" class="navbar-link">
-                        <span class="pull-right glyphicon glyphicon-ok ">
+                        <span class="glyphicon glyphicon-ok">
                         </span>
                     </a>
                 </p>
@@ -26,7 +29,49 @@
         </div>
     </nav>
 
-</form>
+    <div class="container">
+        <form>
+            <label for="username">Username</label>
+            <input type="text"
+                   class="form-control"
+                   id="username"
+                   placeholder="jannunzi">
+            <label for="email">Email</label>
+            <input type="email"
+                   class="form-control"
+                   id="email"
+                   placeholder="jannunzi@gmail.com">
+            <label for="firstname">First Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="firstname"
+                   placeholder="Jose">
+            <label for="lastname">Last Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="lastname"
+                   placeholder="Annunziato">
+            <a class="btn btn-primary btn-block" href="website-list.html">Websites</a>
+            <a class="btn btn-danger btn-block" href="login.html">Logout</a>
+        </form>
+
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-inner">
+                <p class="navbar-text pull-right">
+                    <span class="glyphicon glyphicon-user">
+                    </span>
+                </p>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
 
 
 </body>
