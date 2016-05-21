@@ -5,23 +5,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <title>website-edit</title>
+    <title>website-new</title>
 </head>
 <body>
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-inner">
+        <div class="navbar-header">
             <p class="navbar-text pull-left">
                 <a href="website-list.html" class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left">
                         </span>
                 </a>
             </p>
-            <a class="navbar-brand">Edit Website</a>
+            <a class="navbar-brand">New Website</a>
             <p class="navbar-text pull-right">
                 <a href="website-list.html" class="navbar-link">
                         <span class="glyphicon glyphicon-ok">
@@ -34,17 +35,16 @@
 
 <div class="container">
     <form>
-        <label for="ApplicationName">Application Name</label>
+        <label for="name">Name</label>
         <input type="text"
                class="form-control"
-               id="ApplicationName"
-               placeholder="Blogger">
-        <label for="ApplicationDescription">Application Description</label>
+               id="name"
+               placeholder="Name">
+        <label for="description">Description</label>
         <textarea placeholder="Description"
                   class="form-control"
-                  id="ApplicationDescription"
-                  rows="4">Implement styling as shown in the wireframes. Apply the styles where appropriate. </textarea>
-        <a class="btn btn-danger btn-block" href="website-list.html" style="margin-top: 5px">Delete</a>
+                  id="description"
+                  rows="4"></textarea>
 
     </form>
 </div>
@@ -52,18 +52,15 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <div class="navbar-inner">
-            <p class="navbar-text pull-left">
-                <span class="glyphicon glyphicon-share-alt"></span>
-            </p>
+        <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="profile.html">
+                <a href="../user/profile.html">
                     <span class="glyphicon glyphicon-user">
                     </span>
                 </a>
             </p>
         </div>
     </div>
-
+</nav>
 </body>
 </html>

@@ -9,14 +9,28 @@ p.navbar-text.pull-right {
     margin-right: 15px;
 }
 
+p.navbar-text.pull-left {
+    margin-left: 15px;
+}
+
 span.glyphicon {
     color: black;
 }
 
+span.glyphicon-cog {
+    color: cornflowerblue;
+}
 span.glyphicon-user {
-    color: royalblue;
+    color: cornflowerblue;
+}
+span.glyphicon-play {
+    color: cornflowerblue;
 }
 
-label a:link{
+a:link{
     text-decoration: none;
+}
+
+span.plyphicon-chevron-left {
+    padding-left: 15px;
 }

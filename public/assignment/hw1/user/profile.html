@@ -5,7 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
@@ -13,12 +13,10 @@
 </head>
 <body>
 
-
-
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-            <div class="navbar-inner">
-                <a class="navbar-brand">Profile</a>
+            <div class="navbar-header">
+                <a class="navbar-brand pull-left">Profile</a>
                 <p class="navbar-text pull-right">
                     <a href="profile.html" class="navbar-link">
                         <span class="glyphicon glyphicon-ok">
@@ -29,29 +27,43 @@
         </div>
     </nav>
 
+
     <div class="container">
+
+        <!--<div class="alert alert-success">-->
+            <!--Successfully upadte your profile-->
+        <!--</div>-->
+
+        <!--<div class="alert alert-danger">-->
+            <!--Unable to upadate your profile-->
+        <!--</div>-->
+
         <form>
             <label for="username">Username</label>
             <input type="text"
                    class="form-control"
                    id="username"
+                   value="jannunzi"
                    placeholder="jannunzi">
             <label for="email">Email</label>
             <input type="email"
                    class="form-control"
                    id="email"
+                   value="jannunzi@gmail.com"
                    placeholder="jannunzi@gmail.com">
             <label for="firstname">First Name</label>
             <input type="text"
                    class="form-control"
                    id="firstname"
+                   value="Jose"
                    placeholder="Jose">
             <label for="lastname">Last Name</label>
             <input type="text"
                    class="form-control"
                    id="lastname"
+                   value="Annunziato"
                    placeholder="Annunziato">
-            <a class="btn btn-primary btn-block" href="website-list.html">Websites</a>
+            <a class="btn btn-primary btn-block" href="../website/website-list.html">Websites</a>
             <a class="btn btn-danger btn-block" href="login.html">Logout</a>
         </form>
 
@@ -59,7 +71,7 @@
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
-            <div class="navbar-inner">
+            <div class="navbar-header">
                 <p class="navbar-text pull-right">
                     <span class="glyphicon glyphicon-user">
                     </span>
