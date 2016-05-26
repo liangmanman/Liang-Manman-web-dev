@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <title>widget-heading</title>
+    <title>widget-image</title>
 </head>
 <body>
 
@@ -33,32 +33,42 @@
     </div>
 </nav>
 
+
 <div class="container">
     <form>
         <label for="name">Name</label>
         <input type="text"
                class="form-control"
                id="name"
-               placeholder="Name">
+               placeholder="">
         <label for="text">Text</label>
         <input type="text"
                class="form-control"
                id="text"
-               placeholder="PUS Senate Reaches Compromise on Emerges">
-        <label for="size">Size</label>
+               placeholder="">
+        <label for="URL">URL</label>
         <input type="text"
-                class="form-control"
-                id="size"
-                placeholder="3">
+               class="form-control"
+               id="URL"
+               placeholder="http://i.kinja-img.com/gawker-media/image">
+        <label for="width">Width</label>
+        <input type="text" class="form-control" id="width" placeholder="100%">
+        <label for="uploadFile">Upload</label>
+        <input class="form-control" type="file" id="uploadFile">
+        <a class="btn btn-primary btn-block" href="" style="margin-top: 5px">Upload Image</a>
         <a class="btn btn-danger btn-block" href="widget-list.html" style="margin-top: 5px">Delete</a>
     </form>
 </div>
+
+
+
+
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="../user/profile.html">
+                <a href="../views/user/profile.html">
                     <span class="glyphicon glyphicon-user">
                     </span>
                 </a>
@@ -66,8 +76,6 @@
         </div>
     </div>
 </nav>
-
-
 
 </body>
 </html>

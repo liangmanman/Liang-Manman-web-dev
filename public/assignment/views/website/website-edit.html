@@ -9,10 +9,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <title>website-new</title>
+    <title>website-edit</title>
 </head>
 <body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -22,7 +21,7 @@
                         </span>
                 </a>
             </p>
-            <a class="navbar-brand">New Website</a>
+            <a class="navbar-brand">Edit Website</a>
             <p class="navbar-text pull-right">
                 <a href="website-list.html" class="navbar-link">
                         <span class="glyphicon glyphicon-ok">
@@ -35,16 +34,18 @@
 
 <div class="container">
     <form>
-        <label for="name">Name</label>
+        <label for="ApplicationName">Application Name</label>
         <input type="text"
                class="form-control"
-               id="name"
-               placeholder="Name">
-        <label for="description">Description</label>
+               id="ApplicationName"
+               value="Blogger"
+               placeholder="Blogger">
+        <label for="ApplicationDescription">Application Description</label>
         <textarea placeholder="Description"
                   class="form-control"
-                  id="description"
-                  rows="4"></textarea>
+                  id="ApplicationDescription"
+                  rows="4">Implement styling as shown in the wireframes. Apply the styles where appropriate. </textarea>
+        <a class="btn btn-danger btn-block" href="website-list.html" style="margin-top: 5px">Delete</a>
 
     </form>
 </div>
@@ -53,14 +54,17 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <span class="glyphicon glyphicon-share-alt"></span>
+            </p>
             <p class="navbar-text pull-right">
-                <a href="../user/profile.html">
+                <a href="../views/user/profile.html">
                     <span class="glyphicon glyphicon-user">
                     </span>
                 </a>
             </p>
         </div>
     </div>
-</nav>
+
 </body>
 </html>

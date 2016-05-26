@@ -9,21 +9,22 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <title>website-edit</title>
+    <title>widget-heading</title>
 </head>
 <body>
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="website-list.html" class="navbar-link">
+                <a href="widget-list.html" class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left">
                         </span>
                 </a>
             </p>
-            <a class="navbar-brand">Edit Website</a>
+            <a class="navbar-brand">Widget Page</a>
             <p class="navbar-text pull-right">
-                <a href="website-list.html" class="navbar-link">
+                <a href="widget-list.html" class="navbar-link">
                         <span class="glyphicon glyphicon-ok">
                         </span>
                 </a>
@@ -34,37 +35,39 @@
 
 <div class="container">
     <form>
-        <label for="ApplicationName">Application Name</label>
+        <label for="name">Name</label>
         <input type="text"
                class="form-control"
-               id="ApplicationName"
-               value="Blogger"
-               placeholder="Blogger">
-        <label for="ApplicationDescription">Application Description</label>
-        <textarea placeholder="Description"
-                  class="form-control"
-                  id="ApplicationDescription"
-                  rows="4">Implement styling as shown in the wireframes. Apply the styles where appropriate. </textarea>
-        <a class="btn btn-danger btn-block" href="website-list.html" style="margin-top: 5px">Delete</a>
-
+               id="name"
+               placeholder="Name">
+        <label for="text">Text</label>
+        <input type="text"
+               class="form-control"
+               id="text"
+               placeholder="PUS Senate Reaches Compromise on Emerges">
+        <label for="size">Size</label>
+        <input type="text"
+                class="form-control"
+                id="size"
+                placeholder="3">
+        <a class="btn btn-danger btn-block" href="widget-list.html" style="margin-top: 5px">Delete</a>
     </form>
 </div>
-
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-header">
-            <p class="navbar-text pull-left">
-                <span class="glyphicon glyphicon-share-alt"></span>
-            </p>
             <p class="navbar-text pull-right">
-                <a href="../user/profile.html">
+                <a href="../views/user/profile.html">
                     <span class="glyphicon glyphicon-user">
                     </span>
                 </a>
             </p>
         </div>
     </div>
+</nav>
+
+
 
 </body>
 </html>
