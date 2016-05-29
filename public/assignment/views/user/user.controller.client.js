@@ -1,57 +1,87 @@
 /**
- * Created by liangmanman1 on 5/25/16.
+ * Created by liangmanman1 on 5/29/16.
  */
-
 (function(){
     angular
         .module("WebAppMaker")
         .controller("LoginController", LoginController)
-        .controller("ProfileController", ProfileController);
+        .controller("ProfileController", ProfileController)
+        .controller("RegisterController", RegisterController);
 
-    var users = [
-        {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-        {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-        {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-        {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-    ];
+    function RegisterController($location, UserService) {
+        var vm = this;
+        vm.register = register;
 
-    function ProfileController($routeParams) {
+        function register(username, password, verifyPassword) {
+            if (username === undefined) {
+                vm.error = "Can't register; please check your username";
+            }
+            else if  (password !== verifyPassword) {
+                vm.error = "Can't register; please make sure password and verifyPassword are the same";
+            }
+            else if (password === undefined) {
+                vm.error = "Can't register; please make sure your password is valid";
+            }
+            else {
+                var ith =  UserService.userSize() + 1;
+                var ith2 = ith + 1;
+                var ith3 = ith2 + 1;
+                var newId = ith.toString() + ith2.toString() + ith3.toString();
+                var user = {
+                    _id: newId,
+                    username: username,
+                    password: password,
+                    firstName: "",
+                    lastName: ""
+                };
+                var createdUser = UserService.createUser(user);
+                if (createdUser) {
+                    var id = user._id;
+                    $location.url("/user/" + id);
+                }else {
+                    vm.error = "Can't register; please check your username and password";
+                }
+            }
+
+        }
+
+    }
+
+    function ProfileController($routeParams, UserService) {
         var vm = this;
         vm.updateUser = updateUser;
 
-        var id = $routeParams["id"];
+        var id = $routeParams["userId"];
         var index = -1;
+        var user = null;
         function init() {
-            for(var i in users) {
-                if(users[i]._id === id) {
-                    vm.user = users[i];
-                    index = i;
-                }
-            }
+            vm.user = UserService.findUserById(id);
         }
         init();
 
         function updateUser() {
-            users[index].firstName = vm.user.firstName;
-            users[index].lastName = vm.user.lastName;
-            vm.success = "User successfully updated";
+            var result = UserService.updateUser(vm.user._id, vm.user);
+            if(result === true) {
+                vm.success = "User successfully updated";
+            }
+            else {
+                vm.error = "User not found";
+            }
         }
     }
 
-    function LoginController($location) {
-
+    function LoginController($location, UserService) {
         var vm = this;
-
         vm.login = login;
 
         function login (username, password) {
-            for(var i in users) {
-                if(users[i].username === username && users[i].password === password) {
-                    var id = users[i]._id;
-                    $location.url("/profile/" + id);
-                } else {
-                    vm.error = "User not found";
-                }
+            var user = UserService.findUserByCredentials(username, password);
+
+            if (user) {
+                var id = user._id;
+                $location.url("/user/" + id);
+            }else {
+                vm.error = "User not found";
             }
         }
     }

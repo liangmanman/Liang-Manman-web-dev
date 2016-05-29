@@ -31,7 +31,7 @@
                    type="text"
                    class="form-control"
                    id="username"
-                   placeholder="alice"/>
+                   placeholder=""/>
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
@@ -39,7 +39,7 @@
                    type="email"
                    class="form-control"
                    id="email"
-                   placeholder="alice@wonderland.com"/>
+                   placeholder=""/>
         </div>
         <div class="form-group">
             <label for="first">First Name</label>
@@ -47,7 +47,7 @@
                    type="text"
                    class="form-control"
                    id="first"
-                   placeholder="Alice"/>
+                   placeholder=""/>
         </div>
         <div class="form-group">
             <label for="last">Last Name</label>
@@ -55,12 +55,12 @@
                    type="text"
                    class="form-control"
                    id="last"
-                   placeholder="Wonderland"/>
+                   placeholder=""/>
         </div>
     </form>
 
     <a class="btn btn-primary btn-block"
-       href="../website/website-list.html">Websites</a>
+       href="#/user/{{model.user._id}}/website">Websites</a>
     <a class="btn btn-danger btn-block"
        href="#/login">Logout</a>
 </div>

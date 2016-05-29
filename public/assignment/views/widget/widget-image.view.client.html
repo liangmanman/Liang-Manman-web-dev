@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="initial-scale=1.25, user-scalable = no">
-    <title>widget-youtube</title>
-</head>
-<body>
+
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -50,9 +37,12 @@
         <input type="text"
                class="form-control"
                id="URL"
-               placeholder="http://youtu.be/uLWLashCXHE">
+               placeholder="http://i.kinja-img.com/gawker-media/image">
         <label for="width">Width</label>
-        <input type="text" class="form-control" id="width" placeholder="">
+        <input type="text" class="form-control" id="width" placeholder="100%">
+        <label for="uploadFile">Upload</label>
+        <input class="form-control" type="file" id="uploadFile">
+        <a class="btn btn-primary btn-block" href="" style="margin-top: 5px">Upload Image</a>
         <a class="btn btn-danger btn-block" href="widget-list.html" style="margin-top: 5px">Delete</a>
     </form>
 </div>
@@ -73,6 +63,3 @@
         </div>
     </div>
 </nav>
-
-</body>
-</html>
