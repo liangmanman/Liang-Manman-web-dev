@@ -19,7 +19,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container" scrolling="yes">
 
     <div ng-switch="model.widgetType">
         <div ng-switch-when="HEADER">
@@ -34,6 +34,14 @@
             <ng-include src="'/assignment/views/widget/widget-youtube.view.client.html'"/>
         </div>
     </div>
+
+    <form>
+        <a ng-click="model.deleteWidget()"
+           class="btn btn-danger btn-block"
+           style="margin-top: 5px; margin-left:15px; width:90%">Delete</a>
+    </form>
+
+
 </div>
 
 
@@ -43,7 +51,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right">
-                <a href="../views/user/profile.html">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user">
                     </span>
                 </a>

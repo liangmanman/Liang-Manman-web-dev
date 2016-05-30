@@ -1,90 +1,27 @@
 
 
-<!--<nav class="navbar navbar-default navbar-fixed-top">-->
-    <!--<div class="container-fluid">-->
-        <!--<div class="navbar-header">-->
-            <!--<p class="navbar-text pull-left">-->
-                <!--<a href="widget-list.html" class="navbar-link">-->
-                        <!--<span class="glyphicon glyphicon-chevron-left">-->
-                        <!--</span>-->
-                <!--</a>-->
-            <!--</p>-->
-            <!--<a class="navbar-brand">Widget Page</a>-->
-            <!--<p class="navbar-text pull-right">-->
-                <!--<a href="widget-list.html" class="navbar-link">-->
-                        <!--<span class="glyphicon glyphicon-ok">-->
-                        <!--</span>-->
-                <!--</a>-->
-            <!--</p>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</nav>-->
-
-<!--<div class="container">-->
-    <!--<form>-->
-        <!--<label for="name">Name</label>-->
-        <!--<input-->
-                <!--type="text"-->
-               <!--class="form-control"-->
-               <!--id="name"-->
-               <!--placeholder="Name">-->
-        <!--<label for="text">Text</label>-->
-        <!--<input ng-model="model.widget.text"-->
-                <!--type="text"-->
-               <!--class="form-control"-->
-               <!--id="text"-->
-               <!--placeholder="PUS Senate Reaches Compromise on Emerges">-->
-        <!--<label for="size">Size</label>-->
-        <!--<input type="text"-->
-                <!--class="form-control"-->
-                <!--id="size"-->
-                <!--placeholder="3">-->
-        <!--<a class="btn btn-danger btn-block" href="widget-list.html" style="margin-top: 5px">Delete</a>-->
-    <!--</form>-->
-<!--</div>-->
-
-<!--<nav class="navbar navbar-default navbar-fixed-bottom">-->
-    <!--<div class="container-fluid">-->
-        <!--<div class="navbar-header">-->
-            <!--<p class="navbar-text pull-right">-->
-                <!--<a href="../views/user/profile.html">-->
-                    <!--<span class="glyphicon glyphicon-user">-->
-                    <!--</span>-->
-                <!--</a>-->
-            <!--</p>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</nav>-->
-
-
-<form>
-    <div class="form-group">
+<div class="container">
+    <form>
         <label for="name">Name</label>
-        <input type="text"
-               ng-model="model.widget.name"
-               id="name"
-               placeholder="Name" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label for="text">Text</label>
-        <input type="text"
-               ng-model="model.widget.text"
-               id="text"
+        <input
+                type="text"
                class="form-control"
-               placeholder="Text"/>
-    </div>
-    <div class="form-group">
-        <label for="header-size">Size</label>
-        <select ng-model="model.widget.size"
-                ng-init="model.widget.size='1'"
-                class="form-control"
-                id="header-size">
-            <option ng-selected="true">1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-        </select>
-    </div>
-</form>
+               id="name"
+               placeholder="Name">
+        <label for="text">Text</label>
+        <input ng-model="model.widget.text"
+                type="text"
+               class="form-control"
+               id="text"
+               placeholder="PUS Senate Reaches Compromise on Emerges">
+        <label for="size">Size</label>
+        <input type="text"
+               ng-model="model.widget.size"
+               class="form-control"
+                id="size"
+                placeholder="3">
+
+    </form>
+</div>
+
+

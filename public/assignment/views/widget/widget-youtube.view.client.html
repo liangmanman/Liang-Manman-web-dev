@@ -1,24 +1,4 @@
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <p class="navbar-text pull-left">
-                <a href="widget-list.html" class="navbar-link">
-                        <span class="glyphicon glyphicon-chevron-left">
-                        </span>
-                </a>
-            </p>
-            <a class="navbar-brand">Widget Page</a>
-            <p class="navbar-text pull-right">
-                <a href="widget-list.html" class="navbar-link">
-                        <span class="glyphicon glyphicon-ok">
-                        </span>
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
-
 
 <div class="container">
     <form>
@@ -33,29 +13,19 @@
                id="text"
                placeholder="">
         <label for="URL">URL</label>
-        <input type="text"
+        <input ng-model="model.widget.url"
+                type="text"
                class="form-control"
                id="URL"
                placeholder="http://youtu.be/uLWLashCXHE">
         <label for="width">Width</label>
-        <input type="text" class="form-control" id="width" placeholder="">
-        <a class="btn btn-danger btn-block" href="widget-list.html" style="margin-top: 5px">Delete</a>
+        <input ng-model="model.widget.width"
+               type="text"
+               class="form-control"
+               id="width"
+               placeholder="">
     </form>
 </div>
 
 
 
-
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <p class="navbar-text pull-right">
-                <a href="../views/user/profile.html">
-                    <span class="glyphicon glyphicon-user">
-                    </span>
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>

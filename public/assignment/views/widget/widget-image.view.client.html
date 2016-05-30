@@ -1,25 +1,5 @@
 
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <p class="navbar-text pull-left">
-                <a href="widget-list.html" class="navbar-link">
-                        <span class="glyphicon glyphicon-chevron-left">
-                        </span>
-                </a>
-            </p>
-            <a class="navbar-brand">Widget Page</a>
-            <p class="navbar-text pull-right">
-                <a href="widget-list.html" class="navbar-link">
-                        <span class="glyphicon glyphicon-ok">
-                        </span>
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
-
 
 <div class="container">
     <form>
@@ -35,31 +15,21 @@
                placeholder="">
         <label for="URL">URL</label>
         <input type="text"
+               ng-model="model.widget.url"
                class="form-control"
                id="URL"
                placeholder="http://i.kinja-img.com/gawker-media/image">
-        <label for="width">Width</label>
-        <input type="text" class="form-control" id="width" placeholder="100%">
+        <label for="width" >Width</label>
+        <input ng-model="model.widget.width"
+                type="text"
+               class="form-control"
+               id="width"
+               placeholder="100%">
         <label for="uploadFile">Upload</label>
         <input class="form-control" type="file" id="uploadFile">
-        <a class="btn btn-primary btn-block" href="" style="margin-top: 5px">Upload Image</a>
-        <a class="btn btn-danger btn-block" href="widget-list.html" style="margin-top: 5px">Delete</a>
+        <a ng-click="model.updateWidget()"
+           class="btn btn-primary btn-block"
+           href="" style="margin-top: 5px">Update</a>
     </form>
 </div>
 
-
-
-
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <p class="navbar-text pull-right">
-                <a href="../views/user/profile.html">
-                    <span class="glyphicon glyphicon-user">
-                    </span>
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>

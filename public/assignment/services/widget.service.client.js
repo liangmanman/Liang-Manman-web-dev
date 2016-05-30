@@ -30,6 +30,7 @@
         
         function createWidget(pageId, widget) {
             widgets.push(widget);
+            return true;
         }
         
         function findWidgetsByPageId(pageId) {
@@ -54,6 +55,7 @@
             for (var i in widgets) {
                 if (widgets[i]._id === widgetId) {
                     widgets[i] = widget;
+                    return true;
                 }
             }
             return false;
@@ -63,8 +65,10 @@
             for (var i in widgets) {
                 if (widgets[i]._id === widgetId) {
                     widgets.splice(i, 1);
+                    return true;
                 }
             }
+            return false;
         }
 
         
