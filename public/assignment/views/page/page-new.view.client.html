@@ -3,14 +3,14 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="page-list.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left">
                         </span>
                 </a>
             </p>
             <a class="navbar-brand">New Page</a>
             <p class="navbar-text pull-right">
-                <a href="page-list.html" class="navbar-link">
+                <a ng-click="model.createPage(name)" class="navbar-link">
                         <span class="glyphicon glyphicon-ok">
                         </span>
                 </a>
@@ -21,9 +21,15 @@
 
 
 <div class="container">
+
+    <div ng-if="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
     <form>
         <label for="name">Name</label>
-        <input type="text"
+        <input ng-model="name"
+                type="text"
                class="form-control"
                id="name"
                placeholder="Page Name">
@@ -41,7 +47,7 @@
     <div class="container-fluid">
         <div class="navbar-inner">
             <p class="navbar-text pull-right">
-                <a href="../user/profile.html">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user">
                     </span>
                 </a>

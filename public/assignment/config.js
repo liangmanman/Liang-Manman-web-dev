@@ -29,13 +29,13 @@
                 controller: "WebsiteListController",
                 controllerAs: "model"
             })
-            //5
+            //5 √
             .when("/user/:userId/website/new", {
                 templateUrl: "views/website/website-new.view.client.html",
                 controller: "NewWebsiteController",
                 controllerAs: "model"
             })
-            //6
+            //6 √
             .when("/user/:userId/website/:websiteId", {
                 templateUrl:"views/website/website-edit.view.client.html",
                 controller:"EditWebsiteController",
