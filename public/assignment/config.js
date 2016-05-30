@@ -41,19 +41,19 @@
                 controller:"EditWebsiteController",
                 controllerAs:"model"
             })
-            //7
+            //7 √
             .when("/user/:userId/website/:websiteId/page", {
                 templateUrl:"views/page/page-list.view.client.html",
                 controller:"PageListController",
                 controllerAs:"model"
             })
-            //8
+            //8 √
             .when("/user/:userId/website/:websiteId/page/new", {
                 templateUrl:"views/page/page-new.view.client.html",
                 controller:"NewPageController",
                 controllerAs:"model"
             })
-            //9
+            //9 √
             .when("/user/:userId/website/:websiteId/:pid", {
                 templateUrl:"views/page/page-edit.view.client.html",
                 controller:"EditPageController",
@@ -67,7 +67,7 @@
             })
             //11
             .when("/user/:userId/website/:websiteId/:pid/widget/new", {
-                templateUrl:"views/widget/widget-chooser.view.client.html",
+                templateUrl:"views/widget/widget-choose.view.client.html",
                 controller:"NewWidgetController",
                 controllerAs:"model"
             })

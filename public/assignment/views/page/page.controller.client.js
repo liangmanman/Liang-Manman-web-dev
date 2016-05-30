@@ -8,7 +8,7 @@
         .controller("NewPageController", NewPageController)
         .controller("EditPageController", EditPageController);
     
-    function PageListController($routeParams, $location, PageService) {
+    function PageListController($routeParams, PageService) {
         var vm = this;
         function init() {
             vm.userId = $routeParams.userId;

@@ -4,14 +4,15 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-left">
-                <a href="../views/page/page-list.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left">
                         </span>
                 </a>
             </p>
             <a class="navbar-brand">Widgets</a>
             <p class="navbar-text pull-right">
-                <a href="widget-choose.html" class="navbar-link">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/{{model.pageId}}/widget/new"
+                   class="navbar-link">
                         <span class="glyphicon glyphicon-plus">
                         </span>
                 </a>
@@ -21,62 +22,50 @@
 </nav>
 
 
+<div ng-repeat="widget in model.widgets">
 
 <div class="jga-widget">
+
     <div class="jga-widget-tool">
-        <a href="">
+        <a href="#/user/{{model.userId}}/website/{{model.userId}}/{{model.pageId}}/widget/{{widget._id}}">
             <span class="glyphicon glyphicon-cog"></span>
         </a>
+
         <span class="plyphicon glyphicon glyphicon-align-justify"></span>
     </div>
 
-    <h1>GIZMODO</h1>
-</div>
+    <div ng-switch="widget.widgetType">
+        <div ng-switch-when="HEADER">
 
-<div class="jga-widget">
-    <div class="jga-widget-tool">
-        <a href="">
-            <span class="glyphicon glyphicon-cog"></span>
-        </a>
-        <span class="plyphicon glyphicon glyphicon-align-justify"></span>
+            <div ng-switch="widget.size">
+                <h1 ng-switch-when="1">{{widget.text}}</h1>
+                <h2 ng-switch-when="2">{{widget.text}} </h2>
+                <h3 ng-switch-when="3">{{widget.text}} </h3>
+                <h4 ng-switch-when="4">{{widget.text}} </h4>
+                <h5 ng-switch-when="5">{{widget.text}} </h5>
+                <h6 ng-switch-when="6">{{widget.text}} </h6>
+
+            </div>
+
+        </div>
+
+        <div ng-switch-when="IMAGE">
+            <img width = "{{widget.width}}" height="auto" src="{{widget.url}}">
+        </div>
+
+        <div ng-switch-when="YOUTUBE">
+            <iframe width="{{widget.width}}" src="{{model.returnUrl(widget.url)}}"></iframe>
+        </div>
+
+        <div ng-switch-when="HTML">
+            <p>
+                {{widget.text}}
+            </p>
+
+        </div>
     </div>
-    <h4>US Senate Reaches Compromise on Emergency Zika Funding</h4>
-</div>
-
-<div class="jga-widget">
-    <div class="jga-widget-tool">
-        <a href="">
-            <span class="glyphicon glyphicon-cog"></span>
-        </a>
-        <span class="plyphicon glyphicon glyphicon-align-justify"></span>
     </div>
-    <img   style="width: 100%;height: 100%"    src="http://www.gizmodo.in/thumb/50922061/Dengue-Outbreak-Prompts-State-of-Emergency-on-Hawaiis-Big-Island.jpg?width=480&height=270&resizemode=4"     >
 </div>
-
-<div class="jga-widget">
-    <div class="jga-widget-tool">
-        <a href="">
-            <span class="glyphicon glyphicon-cog"></span>
-        </a>
-        <span class="plyphicon glyphicon glyphicon-align-justify"></span>
-    </div>
-    <p>The cistern officially opened last weekend, and <a href="http://buffalobayou.org/visit/destination/the-cistern/" rel="noopener" target="_blank">tickets can now be purchased </a>for visits, although it looks like they’re sold out for quite some time. For those who don’t have tickets, a <a href="http://www.houstonperiscope.com" rel="noopener" target="_blank">periscope at the surface</a> gives a peek at what lies beneath. You can even “view” it through a<a href="http://www.houstonperiscope.com" rel="noopener" target="_blank"> fairly convincing web experience</a> that recreates the feeling of discovering the cistern for the first time.</p>
-
-</div>
-
-
-<div class="jga-widget">
-    <div class="jga-widget-tool">
-        <a href="">
-            <span class="glyphicon glyphicon-cog"></span>
-        </a>
-        <span class="plyphicon glyphicon glyphicon-align-justify"></span>
-    </div>
-    <iframe width="100%" height=250px src="https://www.youtube.com/embed/5xosHRdxqHA">
-    </iframe>
-
-</div>
-
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -87,7 +76,7 @@
                 <span class="glyphicon glyphicon-eye-open" style="margin-left: 5px"></span>
             </p>
             <p class="navbar-text pull-right">
-                <a href="../views/user/profile.html">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user">
                     </span>
                 </a>

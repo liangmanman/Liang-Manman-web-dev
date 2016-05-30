@@ -21,6 +21,8 @@
 
 <div class="container">
 
+    {{model.website}}
+
     <div ng-show="model.success" class="alert alert-success">
         {{model.success}}
     </div>
@@ -29,7 +31,6 @@
         {{model.error}}
     </div>
 
-    {{model.website}}
     <form>
         <label for="websiteName">Application Name</label>
         <input ng-model="model.website.name"

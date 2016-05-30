@@ -73,8 +73,6 @@
             }
         }
     }
-
-
         function WebsiteListController($routeParams, WebsiteService) {
             var vm = this;
             function init() {
