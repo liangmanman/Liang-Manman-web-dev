@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .factory("UserService", UserService);
     
-    function UserService() {
+    function UserService($http) {
 
         var users = [
             {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
