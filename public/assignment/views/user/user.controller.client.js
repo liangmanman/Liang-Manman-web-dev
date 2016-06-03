@@ -23,51 +23,56 @@
                 vm.error = "Can't register; please make sure your password is valid";
             }
             else {
-                var ith =  UserService.userSize() + 1;
-                var ith2 = ith + 1;
-                var ith3 = ith2 + 1;
-                var newId = ith.toString() + ith2.toString() + ith3.toString();
-                var user = {
-                    _id: newId,
-                    username: username,
-                    password: password,
-                    firstName: "",
-                    lastName: ""
-                };
-                var createdUser = UserService.createUser(user);
-                if (createdUser) {
-                    var id = user._id;
-                    $location.url("/user/" + id);
-                }else {
-                    vm.error = "Can't register; please check your username and password";
-                }
+                UserService.createUser(username, password)
+                    .then(function (response) {
+                            $location.url("/user/" + username);
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        })
+
             }
 
         }
 
     }
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($location, $routeParams, UserService) {
         var vm = this;
         vm.updateUser = updateUser;
+        vm.unregister = unregister;
 
         var id = $routeParams["userId"];
         var index = -1;
-        var user = null;
         function init() {
-            vm.user = UserService.findUserById(id);
+            UserService.findUserById(id)
+                .then(function (response) {
+                    vm.user = response.data;
+                });
         }
         init();
 
         function updateUser() {
-            var result = UserService.updateUser(vm.user._id, vm.user);
-            if(result === true) {
-                vm.success = "User successfully updated";
-            }
-            else {
-                vm.error = "User not found";
-            }
+            UserService.updateUser(vm.user._id, vm.user)
+                .then(
+                    function(response) {
+                    vm.success = "User successfully updated";
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    })
         }
+
+                function unregister() {
+                       UserService
+                            .deleteUser(id)
+                            .then(function(response) {
+                                            $location.url("/login");
+                                        },
+                                function(error) {
+                                    vm.error = error.data;
+                                });
+                    }
     }
 
     function LoginController($location, UserService) {
@@ -75,14 +80,17 @@
         vm.login = login;
 
         function login (username, password) {
-            var user = UserService.findUserByCredentials(username, password);
-
-            if (user) {
-                var id = user._id;
-                $location.url("/user/" + id);
-            }else {
-                vm.error = "User not found";
-            }
+            UserService.findUserByCredentials(username, password)
+                .then(function (response) {
+                    console.log(response);
+                    var user = response.data;
+                    if (user) {
+                        var id = user._id;
+                        $location.url("/user/" + id);
+                    }else {
+                        vm.error = "User not found";
+                    }
+                });
         }
     }
 })();

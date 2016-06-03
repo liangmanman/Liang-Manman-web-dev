@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/public'));
 require ("./test/app.js")(app);
 
 var assignment = require('./assignment/app.js');
-assignment(app);
+assignment(app); //two line together, same as: require("/assignment/app.js")(app);
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
