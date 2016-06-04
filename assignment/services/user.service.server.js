@@ -45,7 +45,7 @@ module.exports = function (app) {
                   return;
               }
           }
-          res.send(403);
+          res.status(400).send("Please verify your username and password");
       }
 
         function findUserByUsername(username, res) {

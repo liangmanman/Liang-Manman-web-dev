@@ -14,14 +14,9 @@
             findUserById: findUserById,
             findUserByUsername:findUserByUsername,
             updateUser: updateUser,
-            deleteUser: deleteUser,
-            userSize: userSize
+            deleteUser: deleteUser
         };
         return api;
-        
-        function userSize() {
-            return users.length;
-        }
 
         function createUser(username, password) {
             var url = "/api/user";
@@ -32,8 +27,6 @@
             return $http.post(url, user);
         }
 
-
-        
         function findUserByUsername(username) {
             var url = "/api/user?username=" + username;
             return $http.get(url);

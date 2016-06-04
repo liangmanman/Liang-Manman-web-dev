@@ -87,10 +87,12 @@
                     if (user) {
                         var id = user._id;
                         $location.url("/user/" + id);
-                    }else {
-                        vm.error = "User not found";
                     }
-                });
+                },
+                function (error) {
+                    vm.error = error.data;
+                }
+                );
         }
     }
 })();

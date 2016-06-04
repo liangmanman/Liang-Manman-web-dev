@@ -24,21 +24,13 @@
                 vm.error = "Can't add without name";
             }
             else {
-                size = WebsiteService.websitesSize();
-                newId = (size+1).toString() + (size+2).toString() + (size+3).toString();
-
-                var website = {
-                    _id: newId,
-                    name: name,
-                    developerId: vm.userId
-                };
-
-                var newWebsite = WebsiteService.createWebsite(vm.userId, website);
-                if (newWebsite) {
-                    $location.url("/user/" + vm.userId + "/website");
-                }else {
-                    vm.error = "Can't add; have no idea why";
-                }
+                var newWebsite = WebsiteService.createWebsite(vm.userId, name)
+                    .then(function (response) {
+                            $location.url("/user/" + vm.userId + "/website");
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
             }
 
         }
@@ -51,7 +43,6 @@
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
 
-
         function init() {
             vm.website = WebsiteService.findWebsiteById(vm.websiteId);
         }
@@ -63,21 +54,23 @@
         }
         
         function updateWebsite() {
-            var result = WebsiteService.updateWebsite(vm.websiteId, vm.website);
-            if(result === true) {
-                vm.success = "Website successfully updated";
-                $location.url("/user/" + vm.userId + "/website");
-            }
-            else {
-                vm.error = "Website not found";
-            }
+            WebsiteService.updateWebsite(vm.websiteId, vm.website)
+                .then(function (response) {
+                    $location.url("/user/" + vm.userId + "/website");
+                },
+                function (error) {
+                    vm.error = error.data;
+                });
         }
     }
         function WebsiteListController($routeParams, WebsiteService) {
             var vm = this;
             function init() {
                 vm.userId = $routeParams.userId;
-                vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+                WebsiteService.findWebsitesByUser(vm.userId)
+                    .then(function (response) {
+                        vm.websites = response.data;
+                    });
             }
             init();
         }

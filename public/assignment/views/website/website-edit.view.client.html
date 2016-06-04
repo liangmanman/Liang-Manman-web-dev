@@ -21,8 +21,6 @@
 
 <div class="container">
 
-    {{model.website}}
-
     <div ng-show="model.success" class="alert alert-success">
         {{model.success}}
     </div>
@@ -34,11 +32,10 @@
     <form>
         <label for="websiteName">Application Name</label>
         <input ng-model="model.website.name"
-                type="text"
+               type="text"
                class="form-control"
                id="websiteName"
-               value="Blogger"
-               placeholder="Blogger">
+               placeholder=""/>
         <label for="ApplicationDescription">Application Description</label>
         <textarea placeholder="Description"
                   class="form-control"
