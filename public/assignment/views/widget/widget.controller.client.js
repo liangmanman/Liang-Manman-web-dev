@@ -90,25 +90,31 @@
 
     function EditWidgetController($routeParams, $location, WidgetService) {
         var vm = this;
+        vm.updateWidget = updateWidget;
+        vm.deleteWidget = deleteWidget;
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
         vm.pageId = $routeParams.pageId;
-        vm.widgetId = $routeParams.wgid;
+        vm.widgetId = $routeParams.widgetId;
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.widgetId);
-            vm.widgetType = vm.widget.widgetType;
+            WidgetService.findWidgetById(vm.widgetId)
+                .then(function (response) {
+                    vm.widget = response.data;
+                });
         }
         init();
-        vm.updateWidget = updateWidget;
-        vm.deleteWidget = deleteWidget;
         
         function updateWidget() {
 
-            var result = WidgetService.updateWidget(vm.widgetId, vm.widget);
-            if (result) {
-                $location.url("/user/" + vm.userId
-                    + "/website/" + vm.websiteId + "/" + vm.pageId + "/widget");
-            }
+            WidgetService.updateWidget(vm.widgetId, vm.widget)
+                .then(function (response) {
+                        $location.url("/user/" + vm.userId
+                            + "/website/" + vm.websiteId + "/" + vm.pageId + "/widget");
+                },
+                function (error) {
+                    vm.error = error.data;
+                });
+
         }
 
         function deleteWidget() {

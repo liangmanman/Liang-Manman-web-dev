@@ -21,7 +21,7 @@
 
 <div class="container" scrolling="yes">
 
-    <div ng-switch="model.widgetType">
+    <div ng-switch="model.widget.widgetType">
         <div ng-switch-when="HEADER">
             <ng-include src="'/assignment/views/widget/widget-heading.view.client.html'"/>
         </div>
@@ -33,6 +33,7 @@
         <div ng-switch-when="YOUTUBE">
             <ng-include src="'/assignment/views/widget/widget-youtube.view.client.html'"/>
         </div>
+        <div ng-switch-when="HTML"> HTML Edit Page is not ready yet</div>
     </div>
 
     <form>
@@ -43,9 +44,6 @@
 
 
 </div>
-
-
-
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">

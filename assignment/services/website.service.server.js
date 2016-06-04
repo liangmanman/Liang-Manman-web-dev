@@ -17,6 +17,7 @@ module.exports = function (app) {
         var newWebsite = req.body;
         newWebsite._id = (new Date()).getTime() + "";
         websites.push(newWebsite);
+        // res.send(newWebsite);
         res.json(newWebsite);
     }
     

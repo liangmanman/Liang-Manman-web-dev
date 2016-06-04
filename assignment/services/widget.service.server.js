@@ -18,7 +18,6 @@ module.exports = function (app) {
     app.post("/api/page/:pageId/widget", createWidget);
     function createWidget(req, res) {
         var newWidget = req.body;
-        newWidget._id = (new Date()).getTime() + "";
         widgets.push(newWidget);
         res.json(newWidget);
     }
@@ -44,7 +43,7 @@ module.exports = function (app) {
                 return;
             }
         }
-        res.send({});
+        res.status(400).send("Widget with ID: "+ widgetId +" not found");
     }
 
     // need revise
@@ -54,9 +53,26 @@ module.exports = function (app) {
         var newWidget = req.body;
         for (var i in widgets) {
             if (widgets[i]._id === widgetId) {
-                widgets[i].name = newWidget.name;
-                res.send(200);
-                return;
+                if (widgets[i].widgetType === "HEADER") {
+                    widgets[i].text = newWidget.text;
+                    widgets[i].size = newWidget.size;
+                    res.send(200);
+                    return;
+                }
+                else if ((widgets[i].widgetType === "IMAGE") || (widgets[i].widgetType === "YOUTUBE")) {
+                    widgets[i].width = newWidget.width;
+                    widgets[i].url = newWidget.url;
+                    res.send(200);
+                    return;
+                }
+                else if (widgets[i].widgetType === "HTML") {
+                    widgets[i].text = newWidget.text;
+                    res.send(200);
+                    return;
+                }
+                else {
+                    res.status(400).send("Widget with Type: "+ newWidget.widgetType +" not designed yet");
+                }
             }
         }
         res.status(400).send("Widget with ID: "+ widgetId +" not found");

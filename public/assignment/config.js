@@ -72,7 +72,7 @@
                 controllerAs:"model"
             })
             //12
-            .when("/user/:userId/website/:websiteId/:pageId/widget/:wgid", {
+            .when("/user/:userId/website/:websiteId/:pageId/widget/:widgetId", {
                 templateUrl:"views/widget/widget-edit.view.client.html",
                 controller:"EditWidgetController",
                 controllerAs:"model"
