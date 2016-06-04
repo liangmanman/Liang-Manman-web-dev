@@ -6,7 +6,7 @@ module.exports = function(app) {
     var userService = require("./services/user.service.server")(app); // pass app to userService
     var websiteService = require("./services/website.service.server")(app);
     var pageService = require("./services/page.service.server")(app);
-    
+    var widgetService = require("./services/widget.service.server")(app);
 
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },

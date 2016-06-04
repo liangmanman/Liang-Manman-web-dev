@@ -5,11 +5,8 @@
     angular
         .module("WebAppMaker")
         .factory("WebsiteService", WebsiteService);
-
-
-
+    
     function WebsiteService($http) {
-
         var api = {
             findWebsitesByUser:findWebsitesByUser,
             findWebsiteById: findWebsiteById,

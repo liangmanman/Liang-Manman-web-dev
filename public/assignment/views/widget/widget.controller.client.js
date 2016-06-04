@@ -14,9 +14,12 @@
         function init() {
             vm.userId = $routeParams.userId;
             vm.websiteId = $routeParams.websiteId;
-            vm.pageId = $routeParams.pid;
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
-        }
+            vm.pageId = $routeParams.pageId;
+            WidgetService.findWidgetsByPageId(vm.pageId)
+                .then(function (response) {
+                    vm.widgets = response.data;
+                });
+        };
         init();
 
         function returnUrl(url) {
@@ -26,13 +29,6 @@
             var html = $sce.trustAsResourceUrl(result);
             return html;
         }
-
-        // function editWidget(widgetId) {
-        //    
-        //    
-        // }
-
-
     }
 
     function NewWidgetController($routeParams, $location, WidgetService) {
@@ -41,7 +37,7 @@
         function init() {
             vm.userId = $routeParams.userId;
             vm.websiteId = $routeParams.websiteId;
-            vm.pageId = $routeParams.pid;
+            vm.pageId = $routeParams.pageId;
         }
         init();
 
@@ -51,31 +47,40 @@
                 var newHeader = {
                   _id: id, widgetType: "HEADER", pageId: vm.pageId, size:2, text:""
                 };
-                var result = WidgetService.createWidget(vm.pageId, newHeader);
-                if (result) {
-                    $location.url("user/" + vm.userId
-                        + "/website/" + vm.websiteId + "/" + vm.pageId + "/widget/" + id);
-                }
+                WidgetService.createWidget(vm.pageId, newHeader)
+                    .then(function (response) {
+                        $location.url("user/" + vm.userId
+                            + "/website/" + vm.websiteId + "/" + vm.pageId + "/widget/" + id);
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
             }
             else if (type === "image") {
                 var newImage = {
                     _id: id, widgetType: "IMAGE", pageId: vm.pageId, width: "not defined", url: "not defined"
                 };
-                var result = WidgetService.createWidget(vm.pageId, newImage);
-                if (result) {
-                    $location.url("user/" + vm.userId
-                        + "/website/" + vm.websiteId + "/" + vm.pageId + "/widget/" + id);
-                }
+                WidgetService.createWidget(vm.pageId, newImage)
+                    .then(function (response) {
+                        $location.url("user/" + vm.userId
+                            + "/website/" + vm.websiteId + "/" + vm.pageId + "/widget/" + id);
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
             }
             else if (type === "youtube") {
                 var newYoutube = {
                     _id: id, widgetType: "YOUTUBE", pageId: vm.pageId, width: "not defined", url: "not defined"
                 };
-                var result = WidgetService.createWidget(vm.pageId, newYoutube);
-                if (result) {
-                    $location.url("user/" + vm.userId
-                        + "/website/" + vm.websiteId + "/" + vm.pageId + "/widget/" + id);
-                }
+                WidgetService.createWidget(vm.pageId, newYoutube)
+                    .then(function (response) {
+                        $location.url("user/" + vm.userId
+                            + "/website/" + vm.websiteId + "/" + vm.pageId + "/widget/" + id);
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
             }
             else {
                 return false;
@@ -87,7 +92,7 @@
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
-        vm.pageId = $routeParams.pid;
+        vm.pageId = $routeParams.pageId;
         vm.widgetId = $routeParams.wgid;
         function init() {
             vm.widget = WidgetService.findWidgetById(vm.widgetId);

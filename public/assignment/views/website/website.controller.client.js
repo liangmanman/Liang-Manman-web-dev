@@ -58,16 +58,10 @@
         }
 
         function updateWebsite() {
-            // problem here
             if (vm.website.name === undefined) {
                 vm.error = "website name should be something";
             }
             else {
-                // var newWebsite = {
-                //         _id: vm.website._id,
-                //         name: name,
-                //         developerId: vm.website.developerId
-                //     };
                 WebsiteService.updateWebsite(vm.websiteId, vm.website)
                     .then(function (response) {
                             $location.url("/user/" + vm.userId + "/website");
