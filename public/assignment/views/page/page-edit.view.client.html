@@ -22,6 +22,14 @@
 
 
 <div class="container">
+
+    <div ng-show="model.success" class="alert alert-success">
+        {{model.success}}
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
     <form>
         <label for="name">Name</label>
         <input ng-model="model.page.name"

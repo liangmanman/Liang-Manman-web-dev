@@ -60,7 +60,7 @@
                     },
                     function(error) {
                         vm.error = error.data;
-                    })
+                    });
         }
 
                 function unregister() {

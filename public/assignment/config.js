@@ -54,25 +54,25 @@
                 controllerAs:"model"
             })
             //9 √
-            .when("/user/:userId/website/:websiteId/:pid", {
+            .when("/user/:userId/website/:websiteId/:pageId", {
                 templateUrl:"views/page/page-edit.view.client.html",
                 controller:"EditPageController",
                 controllerAs:"model"
             })
             //10
-            .when("/user/:userId/website/:websiteId/:pid/widget", {
+            .when("/user/:userId/website/:websiteId/:pageId/widget", {
                 templateUrl:"views/widget/widget-list.view.client.html",
                 controller:"WidgetListController",
                 controllerAs:"model"
             })
             //11
-            .when("/user/:userId/website/:websiteId/:pid/widget/new", {
+            .when("/user/:userId/website/:websiteId/:pageId/widget/new", {
                 templateUrl:"views/widget/widget-choose.view.client.html",
                 controller:"NewWidgetController",
                 controllerAs:"model"
             })
             //12
-            .when("/user/:userId/website/:websiteId/:pid/widget/:wgid", {
+            .when("/user/:userId/website/:websiteId/:pageId/widget/:wgid", {
                 templateUrl:"views/widget/widget-edit.view.client.html",
                 controller:"EditWidgetController",
                 controllerAs:"model"

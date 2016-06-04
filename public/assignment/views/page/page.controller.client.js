@@ -13,7 +13,10 @@
         function init() {
             vm.userId = $routeParams.userId;
             vm.websiteId = $routeParams.websiteId;
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            PageService.findPageByWebsiteId(vm.websiteId)
+                .then(function (response) {
+                vm.pages = response.data;
+            });
         }
         init();
     }
@@ -32,21 +35,19 @@
                 vm.error = "Can't add without name";
             }
             else {
-                size = PageService.pagesSize();
-                newId = (size+1).toString() + (size+2).toString()+(size+3).toString();
                 var newPage = {
-                    _id: newId,
                     name: name,
                     websiteId: vm.websiteId
                 };
-                PageService.createPage(vm.websiteId, newPage);
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                PageService.createPage(vm.websiteId, newPage)
+                    .then(function (response) {
+                        $location.url("/user/" + vm.userId + "/website/"+ vm.websiteId + "/page");
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
             }
-
-            
         }
-        
-        
     }
     
     function EditPageController($routeParams, $location, PageService) {
@@ -56,7 +57,11 @@
         function init() {
             vm.userId = $routeParams.userId;
             vm.websiteId = $routeParams.websiteId;
-            vm.page = PageService.findPageById($routeParams.pid);
+            vm.pageId = $routeParams.pageId;
+            PageService.findPageById(vm.pageId)
+                .then(function (response) {
+                    vm.page = response.data;
+                });
         }
         init();
 
@@ -66,23 +71,23 @@
             }
             else {
                 var newPage = {
-                    _id: vm.page._id,
+                    _id: vm.pageId,
                     name: name,
                     websiteId: vm.websiteId
                 };
-                PageService.updatePage(vm.page._id, newPage);
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                PageService.updatePage(vm.pageId, newPage)
+                .then(function (response) {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
             }
         }
 
         function deletePage() {
-            var done = PageService.deletePage(vm.page._id);
-            if (done) {
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-            }
-            else {
-                vm.error = "This page not exit in out database";
-            }
+            PageService.deletePage(vm.pageId);
+            $location.url("/user/" + vm.userId + "/website/"+ vm.websiteId + "/page");
         }
     }
 
