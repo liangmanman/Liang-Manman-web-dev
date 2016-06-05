@@ -77,6 +77,7 @@ module.exports = function (app) {
         var newUser = req.body;
         for (var i in users) {
             if (users[i]._id === userId) {
+                users[i].username = newUser.username;
                 users[i].firstName = newUser.firstName;
                 users[i].lastName = newUser.lastName;
                 res.send(200);

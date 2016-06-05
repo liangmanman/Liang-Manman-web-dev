@@ -3,16 +3,50 @@
  */
 module.exports = function (app) {
 
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({dest: __dirname + '/../../public/uploads'});
+
+    app.post("/api/upload", upload.single('myFile'), uploadImage);
+    function uploadImage(req, res) {
+
+        var widgetId = req.body.widgetId;
+        var userId = req.body.userId;
+        var websiteId = req.body.websiteId;
+        var pageId = req.body.pageId;
+        var width = req.body.width;
+        var myFile = req.file;
+        var originalname = myFile.originalname; // file name on user's computer
+        var filename = myFile.filename;     // new file name in upload folder
+        var path = myFile.path;         // full path of uploaded file
+        var destination = myFile.destination;  // folder where file is saved to
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
+
+        for (var i in widgets) {
+            if (widgets[i]._id === widgetId) {
+                widgets[i].url = "/uploads/" + filename;
+            }
+        }
+
+        res.redirect("/assignment/index.html#/user/" + userId +"/website/" + websiteId +"/"+ pageId+ "/widget/" + widgetId);
+
+    }
+
+
     var widgets = [
-        { "_id": "123", "widgetType": "HEADER", "pageId": "123", "size": 2, "text": "GIZMODO"},
-        { "_id": "234", "widgetType": "HEADER", "pageId": "123", "size": 4, "text": "Lorem ipsum"},
-        { "_id": "345", "widgetType": "IMAGE", "pageId": "123", "width": "100%",
-            "url": "http://lorempixel.com/400/200/"},
-        { "_id": "456", "widgetType": "HTML", "pageId": "123", "text": "Lorem ipsum"},
-        { "_id": "567", "widgetType": "HEADER", "pageId": "123", "size": 4, "text": "Lorem ipsum"},
-        { "_id": "678", "widgetType": "YOUTUBE", "pageId": "123", "width": "100%",
-            "url": "https://youtu.be/AM2Ivdi9c4E" },
-        { "_id": "789", "widgetType": "HTML", "pageId": "123", "text": "Lorem ipsum"}
+        {"_id": "123", "widgetType": "HEADER", "pageId": "123", "size": 2, "text": "GIZMODO"},
+        {"_id": "234", "widgetType": "HEADER", "pageId": "123", "size": 4, "text": "Lorem ipsum"},
+        {
+            "_id": "345", "widgetType": "IMAGE", "pageId": "123", "width": "100%",
+            "url": "http://lorempixel.com/400/200/"
+        },
+        {"_id": "456", "widgetType": "HTML", "pageId": "123", "text": "Lorem ipsum"},
+        {"_id": "567", "widgetType": "HEADER", "pageId": "123", "size": 4, "text": "Lorem ipsum"},
+        {
+            "_id": "678", "widgetType": "YOUTUBE", "pageId": "123", "width": "100%",
+            "url": "https://youtu.be/AM2Ivdi9c4E"
+        },
+        {"_id": "789", "widgetType": "HTML", "pageId": "123", "text": "Lorem ipsum"}
     ];
 
     app.post("/api/page/:pageId/widget", createWidget);
@@ -39,11 +73,11 @@ module.exports = function (app) {
         var widgetId = req.params.widgetId;
         for (var i in widgets) {
             if (widgets[i]._id === widgetId) {
-                res.send(widgets[i]);
+                res.json(widgets[i]);
                 return;
             }
         }
-        res.status(400).send("Widget with ID: "+ widgetId +" not found");
+        res.status(404).send("Widget with ID: " + widgetId + " not found");
     }
 
     // need revise
@@ -71,11 +105,11 @@ module.exports = function (app) {
                     return;
                 }
                 else {
-                    res.status(400).send("Widget with Type: "+ newWidget.widgetType +" not designed yet");
+                    res.status(400).send("Widget with Type: " + newWidget.widgetType + " not designed yet");
                 }
             }
         }
-        res.status(400).send("Widget with ID: "+ widgetId +" not found");
+        res.status(400).send("Widget with ID: " + widgetId + " not found");
     }
 
     app.delete("/api/widget/:widgetId", deleteWidget);

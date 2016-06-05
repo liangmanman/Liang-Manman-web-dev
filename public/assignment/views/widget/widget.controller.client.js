@@ -29,6 +29,8 @@
             var html = $sce.trustAsResourceUrl(result);
             return html;
         }
+        $(".widget-container")
+            .sortable({axis: "y"});
     }
 
     function NewWidgetController($routeParams, $location, WidgetService) {
