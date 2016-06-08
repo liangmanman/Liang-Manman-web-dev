@@ -1,7 +1,7 @@
 /**
  * Created by liangmanman1 on 6/4/16.
  */
-module.exports = function (app) {
+module.exports = function (app, models) {
 
     var multer = require('multer'); // npm install multer --save
     var upload = multer({dest: __dirname + '/../../public/uploads'});

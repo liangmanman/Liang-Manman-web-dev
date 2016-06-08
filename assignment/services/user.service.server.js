@@ -1,7 +1,7 @@
 /**
  * Created by liangmanman1 on 6/1/16.
  */
-module.exports = function (app, models) {
+module.exports = function(app, models) {
 
     var userModel =  models.userModel;
 
@@ -51,25 +51,40 @@ module.exports = function (app, models) {
             res.send(users);
         }
     }
-      function findUserByCredentials(username, password, res) {
-          for (var i in users) {
-              if (users[i].username === username && users[i].password === password) {
-                  res.send(users[i]) ;
-                  return;
-              }
-          }
-          res.status(400).send("Please verify your username and password");
-      }
 
-        function findUserByUsername(username, res) {
-            for (var i in users) {
-                if (users[i].username === username) {
-                    res.send(users[i]);
-                    return;
+    
+    function findUserByCredentials(username, password, res) {
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(user) {
+                    res.json(user);
+                },
+                function(error) {
+                    res.status(403).send("Unable to login");
                 }
+            );
+
+
+
+        // for (var i in users) {
+        //     if (users[i].username === username && users[i].password === password) {
+        //         res.send(users[i]) ;
+        //         return;
+        //     }
+        // }
+        // res.status(400).send("Please verify your username and password");
+    }
+
+    function findUserByUsername(username, res) {
+        for (var i in users) {
+            if (users[i].username === username) {
+                res.send(users[i]);
+                return;
             }
-            res.send({});
         }
+        res.send({});
+    }
 
 
     app.get("/api/user/:userId", findUserById);
@@ -79,10 +94,10 @@ module.exports = function (app, models) {
         userModel
             .findUserById(userId)
             .then(
-                function (user) {
-                    res.sned(user)
+                function(user) {
+                    res.send(user)
                 },
-                function (error) {
+                function(error) {
                     res.status(400).send(error);
                 }
             );
@@ -99,29 +114,47 @@ module.exports = function (app, models) {
     function updateUser(req, res) {
         var userId = req.params.userId;
         var newUser = req.body;
-        for (var i in users) {
-            if (users[i]._id === userId) {
-                users[i].username = newUser.username;
-                users[i].firstName = newUser.firstName;
-                users[i].lastName = newUser.lastName;
+        userModel
+            .updateUser(userId, newUser)
+            .then(function(user) {
                 res.send(200);
-                return;
-            }
-        }
-        res.status(400).send("User with ID: "+ userId +" not found");
+            }, function(error) {
+                res.status(404).send("Unable to update user with ID: " + userId);
+            });
+        
+        // for (var i in users) {
+        //     if (users[i]._id === userId) {
+        //         users[i].username = newUser.username;
+        //         users[i].firstName = newUser.firstName;
+        //         users[i].lastName = newUser.lastName;
+        //         res.send(200);
+        //         return;
+        //     }
+        // }
+        // res.status(400).send("User with ID: "+ userId +" not found");
     }
 
     app.delete("/api/user/:userId", deleteUser);
     function deleteUser(req, res) {
         var userId = req.params.userId;
-        for (var i in users) {
-            if (users[i]._id === userId) {
-                users.splice(i, 1);
-                res.send(200);
-                return;
-            }
-        }
-        res.status(404).send("Unable to remove user with ID: " + userId);
+        userModel
+            .deleteUser(userId)
+            .then(
+                function (status) {
+                    res.send(200);
+                },
+                function (error) {
+                    res.status(404).send("Unable to remove user with ID: " + userId);
+                }
+            );
+        // for (var i in users) {
+        //     if (users[i]._id === userId) {
+        //         users.splice(i, 1);
+        //         res.send(200);
+        //         return;
+        //     }
+        // }
+        // res.status(404).send("Unable to remove user with ID: " + userId);
     }
 
 };

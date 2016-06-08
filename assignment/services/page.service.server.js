@@ -1,7 +1,7 @@
 /**
  * Created by liangmanman1 on 6/4/16.
  */
-module.exports = function (app) {
+module.exports = function (app, models) {
 
     var pages = [
         { "_id": "123", "name": "Post 1", "websiteId": "456" },
