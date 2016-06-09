@@ -13,11 +13,6 @@
         vm.createWebsite = createWebsite;
         vm.userId = $routeParams.userId;
         vm.websiteId = $routeParams.websiteId;
-
-        function init() {
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
-        }
-        init();
         
         function createWebsite(name) {
             if (name === undefined) {

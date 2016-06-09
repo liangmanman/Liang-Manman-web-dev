@@ -3,8 +3,7 @@
  */
 module.exports = function() {
     var mongoose = require('mongoose');
-    var database = mongoose.createConnection('mongodb://localhost/cs4550summer1');
-    // mongoose.connect('mongodb://localhost/cs4550summer1');
+    mongoose.connect('mongodb://127.0.0.1:27017/cs4550summer1');
 
     var userModel = require("./user/user.model.server.js")();
     var websiteModel = require("./website/website.model.server.js")();

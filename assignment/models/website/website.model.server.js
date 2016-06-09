@@ -17,18 +17,17 @@ module.exports = function () {
     return api;
     
     function createWebsiteForUser(userId, website) {
-       var newWeb = Website.create(website);
-        return Website.update()
-
+        website._user = userId;
+        return Website.create(website); 
 
     }
     
     function findAllWebsitesForUser(userId) {
-        return Website.findWebsitesByUser(userId);
+        return Website.find({_user: userId}); // use find for find list 
     }
     
     function findWebsiteById(websiteId) {
-        return Website.findWebsiteById(websiteId);
+        return Website.findOne({_id: websiteId});
     }
     
     function updateWebsite(websiteId, website) {

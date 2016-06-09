@@ -25,9 +25,9 @@ module.exports = function() {
         return User.remove({_id: userId});
     }
 
-    function updateUser(id, newUser) {
+    function updateUser(userId, newUser) {
         return User.update(
-            {_id: id},
+            {_id: userId},
             {$set :
             {
                 firstName: newUser.firstName,
@@ -41,11 +41,11 @@ module.exports = function() {
     }
 
     function findUserByUsername() {
-
+        return User.findOne({username: username});
     }
 
     function findUserById(userId) {
-        return User.findById(userId);
+        return User.findOne({_id: userId});
     }
 
 

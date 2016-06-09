@@ -1,20 +1,19 @@
 /**
  * Created by liangmanman1 on 6/7/16.
  */
-
 module.exports = function () {
     var mongoose = require("mongoose");
 
     var WidgetSchema = mongoose.Schema({
         _page: {type: mongoose.Schema.Types.ObjectId, ref: 'Page'},
-        type: String, // enum
+        type: String,
         name: String,
         text: String,
         placeholder: String,
         description: String,
         url: String,
-        width: Number,
-        height: Number,
+        width: String,
+        height: String,
         rows: Number,
         size: Number,
         class: String,

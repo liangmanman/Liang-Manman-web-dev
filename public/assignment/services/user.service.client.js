@@ -8,6 +8,8 @@
     
     function UserService($http) {
 
+        
+
         var api = {
           createUser: createUser,
             findUserByCredentials: findUserByCredentials,

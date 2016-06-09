@@ -1,7 +1,7 @@
 /**
  * Created by liangmanman1 on 5/29/16.
  */
-(function(){
+(function () {
     angular
         .module("WebAppMaker")
         .controller("LoginController", LoginController)
@@ -16,7 +16,7 @@
             if (username === undefined) {
                 vm.error = "Can't register; please check your username";
             }
-            else if  (password !== verifyPassword) {
+            else if (password !== verifyPassword) {
                 vm.error = "Can't register; please make sure password and verifyPassword are the same";
             }
             else if (password === undefined) {
@@ -25,7 +25,7 @@
             else {
                 UserService.createUser(username, password)
                     .then(function (response) {
-                            $location.url("/user/" + username);
+                            $location.url("/user/" + response.data._id);
                         },
                         function (error) {
                             vm.error = error.data;
@@ -44,54 +44,53 @@
 
         var id = $routeParams["userId"];
         var index = -1;
+
         function init() {
             UserService.findUserById(id)
                 .then(function (response) {
                     vm.user = response.data;
                 });
         }
+
         init();
 
         function updateUser() {
             UserService.updateUser(vm.user._id, vm.user)
                 .then(
-                    function(response) {
-                    vm.success = "User successfully updated";
+                    function (response) {
+                        vm.success = "User successfully updated";
                     },
-                    function(error) {
+                    function (error) {
                         vm.error = error.data;
                     });
         }
 
-                function unregister() {
-                       UserService
-                            .deleteUser(id)
-                            .then(function(response) {
-                                            $location.url("/login");
-                                        },
-                                function(error) {
-                                    vm.error = error.data;
-                                });
-                    }
+        function unregister() {
+            UserService
+                .deleteUser(id)
+                .then(function (response) {
+                        $location.url("/login");
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    });
+        }
     }
 
     function LoginController($location, UserService) {
         var vm = this;
         vm.login = login;
 
-        function login (username, password) {
+        function login(username, password) {
             UserService.findUserByCredentials(username, password)
                 .then(function (response) {
-                    console.log(response);
-                    var user = response.data;
-                    if (user) {
                         var id = user._id;
                         $location.url("/user/" + id);
+
+                    },
+                    function (error) {
+                        vm.error = error.data;
                     }
-                },
-                function (error) {
-                    vm.error = error.data;
-                }
                 );
         }
     }

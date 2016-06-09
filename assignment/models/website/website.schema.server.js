@@ -8,7 +8,7 @@ module.exports = function () {
         _user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
         name: String,
         description: String,
-        // pages:,
+        pages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Page'}],
         dataCreate: {type: Date, default: Date.now}
         
     }, {collection: "assignment.website"});
