@@ -26,7 +26,7 @@ module.exports = function (app, models) {
             .then(function (page) {
                 res.json(newPage);
             }, function (error) {
-                res.status(400).send("Page with ID: "+ pageId +" is already in sue");
+                res.status(400).send(error);
             });
     }
     
@@ -38,7 +38,7 @@ module.exports = function (app, models) {
             .then(function (pages) {
                 res.send(pages);
             }, function (error) {
-                res.status(400).send("Error when finding UserId " + websiteId + "s pages");
+                res.status(400).send(error);
             });
     }
     
@@ -50,7 +50,7 @@ module.exports = function (app, models) {
             .then(function (page) {
                 res.send(page);
             }, function (error) {
-                res.status(400).send("Can't find Page with pageId" + pageId);
+                res.status(400).send(error);
             })
     }
     
@@ -63,7 +63,7 @@ module.exports = function (app, models) {
             .then(function (page) {
                 res.send(page);
             }, function (error) {
-                res.status(400).send("Error when updating Website with websiteId" + pageId);
+                res.status(400).send(error);
             })
 
     }
@@ -76,7 +76,7 @@ module.exports = function (app, models) {
             .then(function (status) {
                 res.send(200);
             }, function (error) {
-                res.status(404).send("Unable to remove page with ID: " + pageId);
+                res.status(404).send(error);
             });
 
     }

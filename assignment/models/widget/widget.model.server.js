@@ -20,7 +20,7 @@ module.exports = function () {
     
     function createWidget(pageId, widget) {
         widget._page = pageId;
-        return Widget.create(Widget);
+        return Widget.create(widget);
     }
     
     function findAllWidgetsForPage(pageId) {
@@ -32,14 +32,52 @@ module.exports = function () {
     }
 
     function updateWidget(widgetId, widget) {
-        return Widget.update(
-            {_id: widgetId},
-            {$set :
-            {
-                // TODO: don't know what to update;
-            }
-            });
+
+        if (widget.type === 'HEADING') {
+            console.log("into heading");
+            return Widget.update(
+                {_id: widgetId},
+                {
+                    $set: {
+                        text: widget.text,
+                        size: widget.size
+                    }
+                });
+        }
+        else if (widget.type === 'IMAGE'
+            || widget.type === 'YOUTUBE') {
+            return Widget.update(
+                {_id: widgetId},
+                {
+                    $set: {
+                        width: widget.width,
+                        url: widget.url
+                    }
+                });
+        }
+        else if (widget.type === 'HTML') {
+            return Widget.update(
+                {_id: widgetId},
+                {
+                    $set: {
+                        text: widget.text
+                    }
+                });
+        }
+        else if (widget.type === 'INPUT') {
+            return Widget.update(
+                {_id: widgetId},
+                {
+                    $set: {
+                        //TODO: DON'T KNOW WHAT TO UPDATE HERE
+                    }
+                });
+        }
+        else {
+            console.log("can't find type");
+        }
     }
+
 
     function deleteWidget(widgetId) {
         return Widget.remove({_id: widgetId});

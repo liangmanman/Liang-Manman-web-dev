@@ -66,9 +66,10 @@ module.exports = function (app, models) {
         widgetModel
             .createWidget(pageId, newWidget)
             .then(function (widget) {
+                console.log(widget);
                 res.json(widget);
             }, function (error) {
-                res.status(404).send("Unable to create widget for Page: PageId" + pageId);
+                res.status(404).send(error);
             });
         // widgets.push(newWidget);
         // res.json(newWidget);
@@ -82,7 +83,7 @@ module.exports = function (app, models) {
             .then(function (widgets) {
                 res.json(widgets);
             }, function (error) {
-                res.status(404).send("Widget for Page: PageId: " + pageId + " not found");
+                res.status(404).send(error);
             });
         // var newWidgets = [];
         // for (var i in widgets) {
@@ -101,7 +102,7 @@ module.exports = function (app, models) {
             .then(function (widget) {
                 res.json(widget);
             }, function (error) {
-                res.status(404).send("Widget with ID: " + widgetId + " not found");
+                res.status(404).send(error);
             });
         // for (var i in widgets) {
         //     if (widgets[i]._id === widgetId) {
@@ -122,7 +123,7 @@ module.exports = function (app, models) {
             .then(function (widget) {
                res.json(widget);
             }, function (error) {
-                res.status(400).send("Widget with ID: " + widgetId + " not found");
+                res.status(400).send(error);
             });
         // for (var i in widgets) {
         //     if (widgets[i]._id === widgetId) {
@@ -159,7 +160,7 @@ module.exports = function (app, models) {
             .then(function (status) {
                 res.send(200);
             }, function (error) {
-                res.status(404).send("Unable to remove widget with ID: " + widgetId);
+                res.status(404).send(error);
             });
         // for (var i in widgets) {
         //     if (widgets[i]._id === widgetId) {

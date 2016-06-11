@@ -21,6 +21,7 @@
 
 <div class="widget-container">
 
+    {{model.widgets}}
     <div ng-repeat="widget in model.widgets">
         <div class="jga-widget">
 
@@ -32,8 +33,8 @@
                 <span class="plyphicon glyphicon glyphicon-align-justify"></span>
             </div>
 
-            <div ng-switch="widget.widgetType">
-                <div ng-switch-when="HEADER">
+            <div ng-switch="widget.type">
+                <div ng-switch-when="HEADING">
 
                     <div ng-switch="widget.size">
                         <h1 ng-switch-when="1">{{widget.text}}</h1>

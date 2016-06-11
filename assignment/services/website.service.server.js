@@ -32,7 +32,7 @@ module.exports = function (app, models) {
                     res.json(website);
                 },
                 function (error) {
-                    res.status(400).send("Website " + newWebsite.name + " is already in use");
+                    res.status(400).send(error);
                 }
             );
         
@@ -46,7 +46,7 @@ module.exports = function (app, models) {
             .then(function (websites) {
                 res.json(websites);
             }, function (error) {
-                res.status(400).send("Error when finding UserId " + userId + "'s websites");
+                res.status(404).send(error);
             });
     }
     
@@ -57,7 +57,7 @@ module.exports = function (app, models) {
             .then(function (website) {
                 res.json(website);
             }, function (error) {
-                res.status(400).send("Can't find Website with websiteId" + websiteId);
+                res.status(400).send(error);
             });
     }
 
@@ -70,7 +70,7 @@ module.exports = function (app, models) {
             .then(function (website) {
                 res.json(website);
             }, function (error) {
-                res.status(400).send("Error when updating Website with websiteId" + websiteId);
+                res.status(400).send(error);
             });
 
     }
@@ -83,7 +83,7 @@ module.exports = function (app, models) {
             .then(function (status) {
                 res.sned(200);
             }, function (error) {
-                res.status(404).send("Unable to remove website with ID: " + websiteId);
+                res.status(404).send(error);
             });
     }
 };
