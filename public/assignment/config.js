@@ -77,7 +77,7 @@
                 controller:"EditWidgetController",
                 controllerAs:"model"
             })
-            // TODO: implement html widgetEdit html
+            // implement html widgetEdit html
             .when("/user/:userId/website/:websiteId/:pageId/widget/:widgetId/html", {
                 templateUrl:"views/widget/widget-html-edit.view.client.html",
                 controller:"EditWidgetController",

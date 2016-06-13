@@ -18,6 +18,7 @@ module.exports = function () {
         size: Number,
         class: String,
         icon: String,
+        order: Number,
         deletable: Boolean,
         formatted: Boolean,
         dataCreate: {type: Date, default: Date.now}

@@ -20,7 +20,7 @@
 </nav>
 
 <div class="container" scrolling="yes">
-    {{model.widget}}
+    <!--{{model.widget}}-->
 
     <div ng-switch="model.widget.type">
         <div ng-switch-when="HEADING">
@@ -37,7 +37,9 @@
         <div ng-switch-when="HTML">
             <ng-include src="'/assignment/views/widget/widget-html-edit.view.client.html'"/>
         </div>
-        <div ng-switch-when="INPUT"> HTML Edit Page is not ready yet</div>
+        <div ng-switch-when="TEXT">
+            <ng-include src="'/assignment/views/widget/widget-text-edit.view.client.html'"/>
+        </div>
 
     </div>
 

@@ -11,6 +11,7 @@
     function WidgetListController($sce, $routeParams, WidgetService) {
         var vm = this;
         vm.returnUrl = returnUrl;
+        vm.sortWidget = sortWidget;
         function init() {
             vm.userId = $routeParams.userId;
             vm.websiteId = $routeParams.websiteId;
@@ -19,8 +20,19 @@
                 .then(function (response) {
                     vm.widgets = response.data;
                 });
-        };
+
+        }
         init();
+
+        function sortWidget(start, end) {
+            WidgetService.sortWidget(vm.pageId, start, end)
+                .then(function (response) {
+                    vm.widgets = response.data;
+                }, function(error) {
+                    vm.error = error.data;
+                })
+            
+        }
 
         function returnUrl(url) {
             var id = url.substr(url.length - 11);
@@ -29,8 +41,8 @@
             var html = $sce.trustAsResourceUrl(result);
             return html;
         }
-        $(".widget-container")
-            .sortable({axis: "y"});
+        // $(".widget-container")
+        //     .sortable({axis: "y"});
     }
 
     function NewWidgetController($routeParams, $location, WidgetService) {
@@ -40,13 +52,18 @@
             vm.userId = $routeParams.userId;
             vm.websiteId = $routeParams.websiteId;
             vm.pageId = $routeParams.pageId;
+            WidgetService.findWidgetsByPageId(vm.pageId)
+                .then(function (response) {
+                    vm.widgets = response.data;
+                });
         }
         init();
 
         function createWidget(type) {
+            var order = vm.widgets.length;
             if (type === "header") {
                 var newHeader = {
-                  type: "HEADING", _page: vm.pageId, size:2, text:"not defined yet"
+                  type: "HEADING", _page: vm.pageId, size:2, text:"not defined yet", order: order
                 };
                 WidgetService.createWidget(vm.pageId, newHeader)
                     .then(function (response) {
@@ -59,7 +76,7 @@
             }
             else if (type === "image") {
                 var newImage = {
-                    type: "IMAGE", _page: vm.pageId, width: "not defined", url: "not defined"
+                    type: "IMAGE", _page: vm.pageId, width: "not defined", url: "not defined", order: order
                 };
                 WidgetService.createWidget(vm.pageId, newImage)
                     .then(function (response) {
@@ -72,7 +89,7 @@
             }
             else if (type === "youtube") {
                 var newYoutube = {
-                    type: "YOUTUBE", _page: vm.pageId, width: "not defined", url: "not defined"
+                    type: "YOUTUBE", _page: vm.pageId, width: "not defined", url: "not defined", order: order
                 };
                 WidgetService.createWidget(vm.pageId, newYoutube)
                     .then(function (response) {
@@ -85,9 +102,21 @@
             }
             else if (type === "html") {
                 var newHtml = {
-                    type: "HTML", _page: vm.pageId, width: "not defined", url: "not defined"
+                    type: "HTML", _page: vm.pageId, width: "not defined", url: "not defined", order: order
                 };
                 WidgetService.createWidget(vm.pageId, newHtml)
+                    .then(function (response) {
+                        $location.url("user/" + vm.userId
+                            + "/website/" + vm.websiteId + "/" + vm.pageId + "/widget/" + response.data._id);
+                    }, function (error) {
+                        vm.error = error.data;
+                    });
+            }
+            else if (type === "text") {
+                var newText = {
+                    type: "TEXT", _page: vm.pageId, order: order
+                };
+                WidgetService.createWidget(vm.pageId, newText)
                     .then(function (response) {
                         $location.url("user/" + vm.userId
                             + "/website/" + vm.websiteId + "/" + vm.pageId + "/widget/" + response.data._id);

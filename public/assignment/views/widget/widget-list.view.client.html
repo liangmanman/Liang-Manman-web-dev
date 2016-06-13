@@ -19,54 +19,9 @@
     </div>
 </nav>
 
-<div class="widget-container">
 
-    {{model.widgets}}
-    <div ng-repeat="widget in model.widgets">
-        <div class="jga-widget">
-
-            <div class="jga-widget-tool pull-right">
-                <a href="#/user/{{model.userId}}/website/{{model.userId}}/{{model.pageId}}/widget/{{widget._id}}">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-
-                <span class="plyphicon glyphicon glyphicon-align-justify"></span>
-            </div>
-
-            <div ng-switch="widget.type">
-                <div ng-switch-when="HEADING">
-
-                    <div ng-switch="widget.size">
-                        <h1 ng-switch-when="1">{{widget.text}}</h1>
-                        <h2 ng-switch-when="2">{{widget.text}} </h2>
-                        <h3 ng-switch-when="3">{{widget.text}} </h3>
-                        <h4 ng-switch-when="4">{{widget.text}} </h4>
-                        <h5 ng-switch-when="5">{{widget.text}} </h5>
-                        <h6 ng-switch-when="6">{{widget.text}} </h6>
-
-                    </div>
-
-                </div>
-
-                <div ng-switch-when="IMAGE">
-                    <img width="{{widget.width}}" height="auto" src="{{widget.url}}">
-                </div>
-
-                <div ng-switch-when="YOUTUBE">
-                    <iframe width="{{widget.width}}" src="{{model.returnUrl(widget.url)}}"></iframe>
-                </div>
-
-                <div ng-switch-when="HTML">
-                    <p>
-                        {{widget.text}}
-                    </p>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
+<wam-sortable sort="model.sortWidget(start, stop)"
+              data="model.widgets"></wam-sortable>
 
 
 

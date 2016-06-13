@@ -34,11 +34,11 @@ module.exports = function () {
     function updateWidget(widgetId, widget) {
 
         if (widget.type === 'HEADING') {
-            console.log("into heading");
             return Widget.update(
                 {_id: widgetId},
                 {
                     $set: {
+                        name: widget.name,
                         text: widget.text,
                         size: widget.size
                     }
@@ -50,6 +50,7 @@ module.exports = function () {
                 {_id: widgetId},
                 {
                     $set: {
+                        name: widget.name,
                         width: widget.width,
                         url: widget.url
                     }
@@ -60,16 +61,21 @@ module.exports = function () {
                 {_id: widgetId},
                 {
                     $set: {
+                        name: widget.name,
                         text: widget.text
                     }
                 });
         }
-        else if (widget.type === 'INPUT') {
+        else if (widget.type === 'TEXT') {
             return Widget.update(
                 {_id: widgetId},
                 {
                     $set: {
-                        //TODO: DON'T KNOW WHAT TO UPDATE HERE
+                        name: widget.name,
+                        text: widget.text,
+                        rows: widget.rows,
+                        placeholder: widget.placeholder,
+                        formatted: widget.formatted
                     }
                 });
         }
@@ -83,7 +89,38 @@ module.exports = function () {
         return Widget.remove({_id: widgetId});
     }
 
-    function reorderWidget(pageId, start, end) {
+    function reorderWidget(start, end, pageId) {
+        start = parseInt(start);
+        end = parseInt(end);
+        return Widget
+            .find({_page: pageId}, function (err, widgets) {
+                widgets.forEach(function (widget) {
+                    if (start < end) {
+                        if (widget.order > start && widget.order <= end) {
+                            widget.order--;
+                            widget.save();
+                            console.log("changed from " + (widget.order + 1) + "to --")
+                        } else if (widget.order === start) {
+                            widget.order = end;
+                            widget.save();
+                            console.log("changed from " + (start) + "to" + end)
 
+                        }
+                    } else if (start > end) {
+                        if (widget.order >= end && widget.order < start) {
+                            widget.order++;
+                            widget.save();
+                            console.log("changed from " + (widget.order - 1) + "to ++")
+
+                        }
+                        else if (widget.order === start) {
+                            widget.order = end;
+                            widget.save();
+                            console.log("changed from " + (start) + "to" + end)
+
+                        }
+                    }
+                })
+            });
     }
 };

@@ -1,0 +1,19 @@
+
+<h3>{{title}}</h3>
+
+<table class="table" >
+    <thead>
+    <tr>
+        <td ng-repeat="(key,value) in data[0]">
+            {{key}}
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in data | orderBy : 'order'">
+        <td ng-repeat="(key,value) in row">
+            {{value}}
+        </td>
+    </tr>
+    </tbody>
+</table>

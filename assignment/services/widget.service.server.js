@@ -14,7 +14,30 @@ module.exports = function (app, models) {
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
+    app.put("/api/page/:pageId/widget", reorderWidget);
     
+    function reorderWidget(req, res) {
+        var pageId = req.params.pageId;
+        var start = req.query["start"];
+        var end = req.query["end"];
+        if (start && end) {
+            console.log(start + "    " + end);
+            widgetModel
+                .reorderWidget(start, end, pageId)
+                .then(function (widgets) {
+                    res.json(widgets);
+                }, function (error) {
+                    res.status(404).send(error);
+                });
+        }
+        else {
+            console.log("can't get start and end");
+        }
+        
+
+    }
+
+
     function uploadImage(req, res) {
         var widgetId = req.body.widgetId;
         var userId = req.body.userId;
@@ -33,12 +56,22 @@ module.exports = function (app, models) {
             var destination = myFile.destination;  // folder where file is saved to
             var size = myFile.size;
             var mimetype = myFile.mimetype;
-            for (var i in widgets) {
-                if (widgets[i]._id === widgetId) {
-                    widgets[i].url = "/uploads/" + filename;
-                }
-            }
-            res.redirect("/assignment/index.html#/user/" + userId +"/website/" + websiteId +"/"+ pageId+ "/widget/" + widgetId);
+            var newWidget = {
+                url:   "/uploads/" + filename,
+                type: "IMAGE",
+                width: "100%"
+            };
+            widgetModel
+                .updateWidget(widgetId, newWidget)
+                .then(function (widget) {
+                    // res.json(widget);
+                    res.redirect("/assignment/index.html#/user/" + userId
+                        +"/website/" + websiteId +"/"+ pageId+ "/widget/" + widgetId);
+
+                }, function (error) {
+                    res.status(400).send(error);
+                });
+
         }
 
 
@@ -71,8 +104,6 @@ module.exports = function (app, models) {
             }, function (error) {
                 res.status(404).send(error);
             });
-        // widgets.push(newWidget);
-        // res.json(newWidget);
     }
 
     
@@ -85,13 +116,6 @@ module.exports = function (app, models) {
             }, function (error) {
                 res.status(404).send(error);
             });
-        // var newWidgets = [];
-        // for (var i in widgets) {
-        //     if (widgets[i].pageId === pageId) {
-        //         newWidgets.push(widgets[i]);
-        //     }
-        // }
-        // res.send(newWidgets);
     }
 
     
@@ -104,17 +128,8 @@ module.exports = function (app, models) {
             }, function (error) {
                 res.status(404).send(error);
             });
-        // for (var i in widgets) {
-        //     if (widgets[i]._id === widgetId) {
-        //         res.json(widgets[i]);
-        //         return;
-        //     }
-        // }
-        // res.status(404).send("Widget with ID: " + widgetId + " not found");
     }
 
-    // need revise
-    
     function updateWidget(req, res) {
         var widgetId = req.params.widgetId;
         var newWidget = req.body;
@@ -125,31 +140,6 @@ module.exports = function (app, models) {
             }, function (error) {
                 res.status(400).send(error);
             });
-        // for (var i in widgets) {
-        //     if (widgets[i]._id === widgetId) {
-        //         if (widgets[i].widgetType === "HEADER") {
-        //             widgets[i].text = newWidget.text;
-        //             widgets[i].size = newWidget.size;
-        //             res.send(200);
-        //             return;
-        //         }
-        //         else if ((widgets[i].widgetType === "IMAGE") || (widgets[i].widgetType === "YOUTUBE")) {
-        //             widgets[i].width = newWidget.width;
-        //             widgets[i].url = newWidget.url;
-        //             res.send(200);
-        //             return;
-        //         }
-        //         else if (widgets[i].widgetType === "HTML") {
-        //             widgets[i].text = newWidget.text;
-        //             res.send(200);
-        //             return;
-        //         }
-        //         else {
-        //             res.status(400).send("Widget with Type: " + newWidget.widgetType + " not designed yet");
-        //         }
-        //     }
-        // }
-        // res.status(400).send("Widget with ID: " + widgetId + " not found");
     }
 
     
@@ -162,14 +152,6 @@ module.exports = function (app, models) {
             }, function (error) {
                 res.status(404).send(error);
             });
-        // for (var i in widgets) {
-        //     if (widgets[i]._id === widgetId) {
-        //         widgets.splice(i, 1);
-        //         res.send(200);
-        //         return;
-        //     }
-        // }
-        // res.status(404).send("Unable to remove widget with ID: " + widgetId);
     }
 
 };
