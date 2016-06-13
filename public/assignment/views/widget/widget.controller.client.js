@@ -8,6 +8,8 @@
         .controller("NewWidgetController", NewWidgetController)
         .controller("EditWidgetController", EditWidgetController);
 
+    var order = -1;
+
     function WidgetListController($sce, $routeParams, WidgetService) {
         var vm = this;
         vm.returnUrl = returnUrl;
@@ -60,7 +62,8 @@
         init();
 
         function createWidget(type) {
-            var order = vm.widgets.length;
+            order += 1;
+
             if (type === "header") {
                 var newHeader = {
                   type: "HEADING", _page: vm.pageId, size:2, text:"not defined yet", order: order

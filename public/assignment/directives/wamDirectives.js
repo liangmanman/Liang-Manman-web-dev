@@ -7,7 +7,6 @@
 
     // scope.widgets.widgets
 
-
     function wamSortable() {
         function linker(scope, element, attributes) {
             var start = -1;
