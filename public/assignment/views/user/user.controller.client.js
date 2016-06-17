@@ -11,6 +11,18 @@
     function RegisterController($location, UserService) {
         var vm = this;
         vm.register = register;
+        vm.logout = logout;
+        
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function(response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/");
+                    }
+                )
+        }
 
         function register(username, password, verifyPassword) {
             if (username === undefined) {
@@ -25,7 +37,10 @@
             else {
                 UserService.createUser(username, password)
                     .then(function (response) {
-                            $location.url("/user/" + response.data._id);
+                            var user = response.data;
+                            $rootScope.currentUser = user;
+                            $location.url("/user/"+user._id);
+                            // $location.url("/user/" + response.data._id);
                         },
                         function (error) {
                             vm.error = error.data;
@@ -81,18 +96,31 @@
         var vm = this;
         vm.login = login;
 
-        function login(username, password) {
-            UserService.findUserByCredentials(username, password)
-                .then(function (response) {
-                    var user = response.data;
-                        var id = user._id;
-                        $location.url("/user/" + id);
-
-                    },
-                    function (error) {
+        // change username, password to user
+        function login(user) {
+            UserService
+                .login(user)
+                .then(
+                    function (response) {
+                        var user = response.data;
+                        $rootScope.currentUser = user;
+                        $location.url("/user/" + user._id);
+                    }
+                    , function (error) {
                         vm.error = error.data;
                     }
                 );
+                // .findUserByCredentials(username, password)
+                // .then(function (response) {
+                //     var user = response.data;
+                //         var id = user._id;
+                //         $location.url("/user/" + id);
+                //
+                //     },
+                //     function (error) {
+                //         vm.error = error.data;
+                //     }
+                // );
         }
     }
 })();

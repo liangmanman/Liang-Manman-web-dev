@@ -16,5 +16,12 @@ module.exports = function () {
 
         }, {collection: "assignment.user"});
 
+    var UserSchema = mongoose.Schema({
+        facebook: {
+            id:    String,
+            token: String
+        }
+    });
+
     return UserSchema;
 };

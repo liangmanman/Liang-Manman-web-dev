@@ -18,11 +18,17 @@
                 controllerAs: "model"
             })
             //3 √
-            .when("/user/:userId", {
+            .when ("/user", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
             })
+            // .when("/user/:userId", {
+            //     templateUrl: "views/user/profile.view.client.html",
+            //     controller: "ProfileController",
+            //     controllerAs: "model"
+            // })
             //4 √
             .when("/user/:userId/website", {
                 templateUrl: "views/website/website-list.view.client.html",
@@ -89,6 +95,19 @@
                 controllerAs: "model"
             });
 
-
+        var checkLoggedin = function($q, $timeout, $http, $location, $rootScope) {
+            var deferred = $q.defer();
+            $http.get('/api/loggedin').success(function(user) {
+                $rootScope.errorMessage = null;
+                if (user !== '0') {
+                    $rootScope.currentUser = user;
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    $location.url('/');
+                }
+            });
+            return deferred.promise;
+        };
     }
 })();
