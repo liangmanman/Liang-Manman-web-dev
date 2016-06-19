@@ -38,7 +38,6 @@ module.exports = function(app, models) {
         clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
-    // console.log(facebookConfig.callbackURL);
 
     function facebookStrategy(token, refreshToken, profile, done) {
         var id = profile.id;

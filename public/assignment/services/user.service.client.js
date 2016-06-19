@@ -18,7 +18,7 @@
             login: login,
             logout: logout,
             register: register,
-            checkLoggedin: checkLoggedin,
+            checkLoggedin: checkLoggedin
         };
         return api;
 
