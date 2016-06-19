@@ -151,7 +151,6 @@ module.exports = function(app, models) {
                 function(user) {
                     if(user){
                         req.login(user, function(err) {
-                            console.log("try to login with req");
                             if(err) {
                                 res.status(400).send(err);
                             } else {

@@ -23,7 +23,6 @@ module.exports = function() {
     }
 
     function createUser(user) {
-        console.log(user);
         User.create(user);
         return User.findOne({username: user.username, password: user.password});
     }
