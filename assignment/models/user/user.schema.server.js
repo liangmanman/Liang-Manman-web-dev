@@ -3,7 +3,6 @@
  */
 module.exports = function () {
     var mongoose = require('mongoose');
-
     var UserSchema = mongoose.Schema({
         username: String,
         password: String,
@@ -22,10 +21,6 @@ module.exports = function () {
         dataCreate: {type: Date, default: Date.now}
 
         }, {collection: "assignment.user"});
-
-    var UserSchema = mongoose.Schema({
-
-    }, {collection: "assignment.user"});
 
     return UserSchema;
 };

@@ -17,8 +17,8 @@ module.exports = function(app, models) {
     app.get('/auth/facebook/callback',
         passport
             .authenticate('facebook', {
-                    successRedirect: '/#/profile',
-                    failureRedirect: '/#/login'
+                    successRedirect: '/assignment/index.html#/profile',
+                    failureRedirect: '/assignment/index.html#/login'
                 }
             )
     );
@@ -48,7 +48,6 @@ module.exports = function(app, models) {
                     if(user) {
                         return done(null, user);
                     } else {
-                        console.log("no user with facebook id");
                         var user = {
                             username: profile.displayName.replace(/ /g, ''),
                             facebook: {
@@ -152,6 +151,7 @@ module.exports = function(app, models) {
                 function(user) {
                     if(user){
                         req.login(user, function(err) {
+                            console.log("try to login with req");
                             if(err) {
                                 res.status(400).send(err);
                             } else {

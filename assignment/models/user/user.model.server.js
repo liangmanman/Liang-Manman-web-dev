@@ -23,11 +23,9 @@ module.exports = function() {
     }
 
     function createUser(user) {
-        var newUser = {
-            username: user.username,
-            password: user.password
-        };
-        return User.create(newUser);
+        console.log(user);
+        User.create(user);
+        return User.findOne({username: user.username, password: user.password});
     }
 
     function deleteUser(userId) {
@@ -40,7 +38,8 @@ module.exports = function() {
             {$set :
             {
                 firstName: newUser.firstName,
-                lastName: newUser.lastName
+                lastName: newUser.lastName,
+                email: newUser.email
             }
             });
     }

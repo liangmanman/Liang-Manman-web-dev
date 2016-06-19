@@ -26,8 +26,12 @@
             return $http.get("/api/loggedin");
         }
 
-        function register(user) {
-            return $http.post("/api/register", user);
+        function register(username, password) {
+            var newUser = {
+                username: username,
+                password: password
+            };
+            return $http.post("/api/register", newUser);
         }
 
         function logout() {

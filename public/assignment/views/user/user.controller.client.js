@@ -27,7 +27,7 @@
                     .register(username, password)
                     .then(function (response) {
                             $rootScope.currentUser = response.data;
-                            $location.url("/user/" + response.data._id);
+                            $location.url("/profile/" + response.data._id);
                         },
                         function (error) {
                             vm.error = error.data;
@@ -46,13 +46,22 @@
         vm.unregister = unregister;
         var id = $routeParams["userId"];
         var index = -1;
-
         function init() {
-            UserService
-                .findUserById(id)
-                .then(function (response) {
-                    vm.user = response.data;
-                });
+            if (id != undefined) {
+                UserService
+                    .findUserById(id)
+                    .then(function (response) {
+                        vm.user = response.data;
+                    });
+            }
+            else {
+                UserService
+                    .findUserById($rootScope.currentUser._id)
+                    .then(function (response) {
+                        vm.user = response.data;
+                    });
+            }
+
         }
         init();
 
@@ -106,7 +115,7 @@
                     function (response) {
                         var user = response.data;
                         $rootScope.currentUser = user;
-                        $location.url("/user/" + user._id);
+                        $location.url("/profile/" + user._id);
                     }
                     , function (error) {
                         vm.error = error.data;
