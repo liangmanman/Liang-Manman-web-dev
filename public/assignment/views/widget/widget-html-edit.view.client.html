@@ -22,22 +22,19 @@
 <!--</nav>-->
 
 <label for="name">Name</label>
-<input type="text"
+<input ng-model="model.widget.name"
+       type="text"
        class="form-control"
        id="name"
        placeholder="">
 <input type="text" class="form-control" aria-label="...">
-
 <div class="input-group">
-
       <span class="input-group-addon">
         <input type="checkbox" aria-label="...">
       </span>
 </div>
-
 <div text-angular ng-model="model.widget.text"
      ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'], ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"></div>
-
 <div>
     {{model.widget.text}}
 </div>
