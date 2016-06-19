@@ -8,21 +8,9 @@
         .controller("ProfileController", ProfileController)
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($location, UserService) {
+    function RegisterController($location, $rootScope, UserService) {
         var vm = this;
         vm.register = register;
-        vm.logout = logout;
-        
-        function logout() {
-            UserService
-                .logout()
-                .then(
-                    function(response) {
-                        $rootScope.currentUser = null;
-                        $location.url("/");
-                    }
-                )
-        }
 
         function register(username, password, verifyPassword) {
             if (username === undefined) {
@@ -35,12 +23,11 @@
                 vm.error = "Can't register; please make sure your password is valid";
             }
             else {
-                UserService.createUser(username, password)
+                UserService
+                    .register(username, password)
                     .then(function (response) {
-                            var user = response.data;
-                            $rootScope.currentUser = user;
-                            $location.url("/user/"+user._id);
-                            // $location.url("/user/" + response.data._id);
+                            $rootScope.currentUser = response.data;
+                            $location.url("/user/" + response.data._id);
                         },
                         function (error) {
                             vm.error = error.data;
@@ -52,22 +39,37 @@
 
     }
 
-    function ProfileController($location, $routeParams, UserService) {
+    function ProfileController($location, $routeParams, $rootScope, UserService) {
         var vm = this;
         vm.updateUser = updateUser;
+        vm.logout = logout;
         vm.unregister = unregister;
-
         var id = $routeParams["userId"];
         var index = -1;
 
         function init() {
-            UserService.findUserById(id)
+            UserService
+                .findUserById(id)
                 .then(function (response) {
                     vm.user = response.data;
                 });
         }
-
         init();
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function () {
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
+        }
 
         function updateUser() {
             UserService.updateUser(vm.user._id, vm.user)
@@ -92,14 +94,14 @@
         }
     }
 
-    function LoginController($location, UserService) {
+    function LoginController($location, $rootScope, UserService) {
         var vm = this;
         vm.login = login;
 
         // change username, password to user
-        function login(user) {
+        function login(username, password) {
             UserService
-                .login(user)
+                .login(username, password)
                 .then(
                     function (response) {
                         var user = response.data;

@@ -17,9 +17,14 @@
             deleteUser: deleteUser,
             login: login,
             logout: logout,
-            register: register
+            register: register,
+            checkLoggedin: checkLoggedin,
         };
         return api;
+
+        function checkLoggedin() {
+            return $http.get("/api/loggedin");
+        }
 
         function register(user) {
             return $http.post("/api/register", user);
@@ -29,7 +34,11 @@
             return $http.post("/api/logout");
         }
 
-        function login(user) {
+        function login(username, password) {
+            var user = {
+                username: username,
+                password: password
+            };
             return $http.post("/api/login", user);
         }
 

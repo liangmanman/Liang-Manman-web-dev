@@ -9,6 +9,13 @@ module.exports = function () {
         password: String,
         firstName: String,
         lastName: String,
+        facebook: {
+            id:    String,
+            token: String
+        },
+        google: {
+            id: String
+        },
         email: String,
         phone: String,
         websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Website'}],
@@ -17,11 +24,8 @@ module.exports = function () {
         }, {collection: "assignment.user"});
 
     var UserSchema = mongoose.Schema({
-        facebook: {
-            id:    String,
-            token: String
-        }
-    });
+
+    }, {collection: "assignment.user"});
 
     return UserSchema;
 };
