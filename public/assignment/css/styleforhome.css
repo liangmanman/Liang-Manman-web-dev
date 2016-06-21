@@ -1,0 +1,13 @@
+.showme{
+    display: inline-flex;
+    display: none;
+}
+.showhim:hover .showme{
+    display: inline-flex;
+}
+
+.inner{
+    display: inline-block;
+    /*margin-left: 90px;*/
+
+}
