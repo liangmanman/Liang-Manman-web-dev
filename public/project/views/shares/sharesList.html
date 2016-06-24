@@ -1,0 +1,47 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                My Shares
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/shares/new" class="navbar-link">
+                        <span class="glyphicon glyphicon-plus">
+                        </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <ul class="list-group">
+        <li ng-repeat="share in model.shares" class="list-group-item">
+            // TODO:NEED TO REVISE HERE, DISTINGISH MUSIC AND ALBUMS
+            <a href="#/user/{{model.userId}}/shares/{{website._id}}">{{website.name}}</a>
+            <a href="#/user/{{model.userId}}/shares/{{website._id}}/edit" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#/profile/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user">
+                    </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

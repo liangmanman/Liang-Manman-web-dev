@@ -1,5 +1,5 @@
 /**
- * Created by liangmanman1 on 6/1/16.
+ * Created by liangmanman1 on 6/23/16.
  */
 module.exports = function(app, models) {
 
@@ -8,21 +8,10 @@ module.exports = function(app, models) {
 
     var LocalStrategy = require('passport-local').Strategy;
     passport.use('wam',   new LocalStrategy(localStrategy));
-    var FacebookStrategy = require('passport-facebook').Strategy;
     var bcrypt = require('bcrypt-nodejs');
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
-    // var auth = authorized;
 
-    app.get('/auth/facebook/callback',
-        passport
-            .authenticate('facebook', {
-                    successRedirect: '/assignment/homepage.html#/profile',
-                    failureRedirect: '/assignment/homepage.html#/login'
-                }
-            )
-    );
-    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.post("/api/user", createUser);
     app.get("/api/user", getUsers);
     app.get("/api/user/:userId", findUserById);
@@ -32,42 +21,6 @@ module.exports = function(app, models) {
     app.post('/api/logout', logout);
     app.post('/api/register', register);
     app.get('/api/loggedin', loggedin);
-
-    var facebookConfig = {
-        clientID     : process.env.FACEBOOK_CLIENT_ID,
-        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
-    };
-
-    function facebookStrategy(token, refreshToken, profile, done) {
-        var id = profile.id;
-        userModel
-            .findUserByFacebookId(id)
-            .then(
-                function(user) {
-                    if(user) {
-                        return done(null, user);
-                    } else {
-                        var user = {
-                            username: profile.displayName.replace(/ /g, ''),
-                            facebook: {
-                                id: profile.id,
-                                displayName: profile.displayName
-                            }
-                        };
-                        return userModel
-                            .createUser(user);
-                    }
-                }
-            )
-            .then(
-                function (user) {
-                    return done(null, user);
-                }
-            );
-    }
-
-    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
     function authenticate(req, res, next) {
         if (!req.isAuthenticated()) {
@@ -127,7 +80,6 @@ module.exports = function(app, models) {
     }
 
     function register(req, res) {
-        console.log("into wrong server");
         var username = req.body.username;
         var password = req.body.password;
         userModel
@@ -175,7 +127,7 @@ module.exports = function(app, models) {
         var user = req.user;
         res.json(user);
     }
-    
+
     function createUser(req, res) {
         var newUser = req.body;
         userModel
@@ -190,7 +142,7 @@ module.exports = function(app, models) {
             );
     }
 
-    
+
     function getUsers(req, res) {
         var userName = req.query["username"];
         var passWord = req.query["password"];
@@ -205,7 +157,7 @@ module.exports = function(app, models) {
         }
     }
 
-    
+
     function findUserByCredentials(username, password, req, res) {
         userModel
             .findUserByCredentials(username, password)
@@ -235,7 +187,7 @@ module.exports = function(app, models) {
     }
 
 
-    
+
     function findUserById(req, res) {
         var userId = req.params.userId;
         userModel
@@ -250,7 +202,7 @@ module.exports = function(app, models) {
             );
     }
 
-    
+
     function updateUser(req, res) {
         var userId = req.params.userId;
         var newUser = req.body;
@@ -261,10 +213,10 @@ module.exports = function(app, models) {
             }, function(error) {
                 res.status(404).send(error);
             });
-        
+
     }
 
-    
+
     function deleteUser(req, res) {
         var userId = req.params.userId;
         userModel

@@ -13,7 +13,7 @@ module.exports = function() {
     }
     var mongoose = require('mongoose');
     // mongoose.connect('mongodb://127.0.0.1:27017/cs4550summer1');
-    mongoose.connect(connectionString);
+    // mongoose.connect(connectionString);
 
     var userModel = require("./user/user.model.server.js")();
     var websiteModel = require("./website/website.model.server.js")();

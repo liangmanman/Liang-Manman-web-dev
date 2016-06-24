@@ -1,0 +1,59 @@
+
+
+    <div style='position:absolute;z-index:0;left:0;top:0;width:100%;height:100%'>
+        <img src='blur-bg.jpg' style='width:100%;height:100%' alt='[]' />
+
+        <div align="center"
+             class="smallContainer row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div ng-if="model.error"
+                     class="alert alert-danger form-reset">
+                    {{model.error}}
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <h3 align="center">Login</h3>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <input ng-model="username"
+                       class="form-reset"
+                       placeholder="username"
+                       type="text"/>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <input ng-model="password"
+                       class="form-reset"
+                       placeholder="password"
+                       type="password"
+                       style="margin-top: 5px">
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <a ng-click="model.login(username, password)"
+                   class="btn btn-lg form-reset"
+                   style="margin-top: 5px">Login</a>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <a class="btn btn-lg form-reset"
+                   href="#/register"
+                   style="margin-top: 5px">Register</a>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12"">
+                <a class="btn btn-lg form-reset"
+                   href="#/guest"
+                   style="margin-top: 5px; font-family: Arial">Browse as Guest</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+

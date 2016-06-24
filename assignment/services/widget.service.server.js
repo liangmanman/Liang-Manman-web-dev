@@ -46,7 +46,7 @@ module.exports = function (app, models) {
         var width = req.body.width;
         var myFile = req.file;
         if(myFile == null) {
-            res.redirect("/assignment/index.html#/user/"+userId+"/website/"+websiteId+ "/" + pageId+"/widget/"+widgetId);
+            res.redirect("/assignment/homepage.html#/user/"+userId+"/website/"+websiteId+ "/" + pageId+"/widget/"+widgetId);
             return;
         }
         else {
@@ -65,7 +65,7 @@ module.exports = function (app, models) {
                 .updateWidget(widgetId, newWidget)
                 .then(function (widget) {
                     // res.json(widget);
-                    res.redirect("/assignment/index.html#/user/" + userId
+                    res.redirect("/assignment/homepage.html#/user/" + userId
                         +"/website/" + websiteId +"/"+ pageId+ "/widget/" + widgetId);
 
                 }, function (error) {

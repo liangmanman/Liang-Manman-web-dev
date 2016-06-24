@@ -1,5 +1,5 @@
 /**
- * Created by liangmanman1 on 5/29/16.
+ * Created by liangmanman1 on 6/22/16.
  */
 (function () {
     angular
@@ -123,4 +123,5 @@
                 );
         }
     }
+
 })();
