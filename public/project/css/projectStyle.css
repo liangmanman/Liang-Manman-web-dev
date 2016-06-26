@@ -126,8 +126,17 @@ a:link{
     cursor: pointer;
 }
 
-.list-group-item {
+.list-group-item.myItem{
     margin-top: 1px;
+    position: relative;
+    display: block;
+    padding: 30px 10px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
 }
 
+audio {
+    width: 150px;
+}
 

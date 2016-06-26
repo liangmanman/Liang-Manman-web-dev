@@ -9,7 +9,7 @@
                 </a>
             </p>
             <a class="navbar-brand">
-                All Shares In Web-dev Music-Share
+                All Shares In Music-Share
             </a>
         </div>
     </div>
@@ -26,7 +26,7 @@
     <h1>allShareMusic</h1>
 
     <ul class="list-group">
-        <li ng-repeat="share in model.shareMusics" class="list-group-item">
+        <li ng-repeat="share in model.shareMusics" class="list-group-item  myItem">
             <a ng-click="model.getInformation(share.type, share._id, share._user)">{{share.name}}</a>
             <audio class="pull-right" style="margin-top: -5px" src="{{share.url}}" controls>
                 <p>If you are reading this, it is because your browser does not support the audio element.</p>
@@ -41,11 +41,11 @@
 
 </div>
 
-<div class="container" >
+<div class="container" style="margin-bottom: 50px">
     <h1>allShareAlbums</h1>
 
     <ul class="list-group">
-        <li ng-repeat="share in model.shareAlbums" class="list-group-item">
+        <li ng-repeat="share in model.shareAlbums" class="list-group-item myItem">
             <a ng-click="model.getInformation(share.type, share._id, share._user)">{{share.name}}</a>
             <a ng-click="model.addLike(share._id, share.type, share.name)" class="pull-right">
                 <span style="color:cornflowerblue" class="glyphicon glyphicon-heart"></span>

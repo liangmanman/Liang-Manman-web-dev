@@ -19,7 +19,7 @@
 <div class="container" style="margin-top: 40px">
     <h1>likeMusic</h1>
     <ul class="list-group">
-        <li ng-repeat="like in model.likeMusics" class="list-group-item">
+        <li ng-repeat="like in model.likeMusics" class="list-group-item myItem">
             <a href="#/user/{{model.userId}}/likes/music/{{like._id}}/{{like._user}}/information">{{like.name}}</a>
             <audio class="pull-right" style="margin-top: -5px" src="{{like.url}}" controls>
                 <p>If you are reading this, it is because your browser does not support the audio element.</p>
@@ -34,11 +34,11 @@
 
 </div>
 
-<div class="container" style="margin-top: 40px">
+<div class="container" style="margin-bottom: 50px">
     <h1>likeAlbums</h1>
 
     <ul class="list-group">
-        <li ng-repeat="like in model.likeAlbums" class="list-group-item">
+        <li ng-repeat="like in model.likeAlbums" class="list-group-item myItem">
             <a href="#/user/{{model.userId}}/likes/album/{{like._id}}/{{like._user}}/information">{{like.name}}</a>
             <a ng-click="model.deleteLike(like._id)" class="pull-right">
                 <span class="glyphicon glyphicon-trash"></span>

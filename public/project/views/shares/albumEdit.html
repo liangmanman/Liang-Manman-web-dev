@@ -21,10 +21,10 @@
     <div ng-show="model.error" class="alert alert-danger animated fadeInDown" id="hideError">
         {{model.error}}
     </div>
-    <h2>All Music in Album</h2>
+    <h3>All Music in Album</h3>
 
     <ul class="list-group">
-        <li ng-repeat="share in model.musics" class="list-group-item">
+        <li ng-repeat="share in model.musics" class="list-group-item myItem">
             {{share.name}}
 
             <audio class="pull-right" style="margin-top: -5px" src="{{share.url}}" controls>
@@ -42,8 +42,8 @@
 
 </div>
 
-<div class="container">
-    <h2>Album Information</h2>
+<div class="container"style="margin-bottom: 50px">
+    <h3>Album Information</h3>
     <form>
         <label for="shareName">Name</label>
         <input ng-model="model.album.name"
@@ -59,6 +59,7 @@
                   rows="4"></textarea>
     </form>
     <a class="btn btn-danger btn-block" ng-click="model.deleteShare()" style="margin-top: 5px">Delete</a>
+
 </div>
 
 
