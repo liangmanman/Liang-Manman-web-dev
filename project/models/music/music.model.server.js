@@ -12,9 +12,11 @@ module.exports = function () {
         findAllMusicsForUser: findAllMusicsForUser,
         findAllLikeMusicForUser: findAllLikeMusicForUser,
         findAllMusic: findAllMusic,
-        findReview: findReview,
+        findMusicForAlbum: findMusicForAlbum,
         updateMusic: updateMusic,
         addFollowerToMusic: addFollowerToMusic,
+        addMusicToAlbum:  addMusicToAlbum,
+        deleteMusicFromAlbum: deleteMusicFromAlbum,
         deleteMusic: deleteMusic,
         deleteLike:  deleteLike
 
@@ -43,12 +45,8 @@ module.exports = function () {
         return Music.findOne({_id: musicId});
     }
 
-    function findReview(musicId, userId) {
-        var music = Music.findOne({_id: musicId});
-        var reviews = music.reviews;
-        console.log(reviews);
-        var review = reviews.findOne({reviewBy: userId});
-        return review.comment;
+    function findMusicForAlbum(albumId) {
+        return Music.find({belongsTo: albumId});
     }
 
     function updateMusic(MusicId, music) {
@@ -57,7 +55,8 @@ module.exports = function () {
             {$set :
             {
                 name: music.name,
-                description: music.description
+                description: music.description,
+                url: music.url
             }
             });
     }
@@ -67,7 +66,21 @@ module.exports = function () {
             {_id: musicId},
             { $addToSet: { followers: userId}}
         );
-        
+    }
+    
+    function addMusicToAlbum(musicId, albumId) {
+        return Music.update(
+            {_id: musicId},
+            {$addToSet: { belongsTo: albumId}}
+        );
+    }
+
+    function deleteMusicFromAlbum(musicId, albumId) {
+        console.log("into modelService");
+        return Music.update(
+            {_id: musicId},
+            {$pull: { belongsTo: albumId}}
+        );
     }
 
     function deleteMusic(MusicId) {

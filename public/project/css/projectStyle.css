@@ -85,21 +85,21 @@ a:link{
     line-height: 1.6;
     background: none;
     border-radius: 4px;
-    border: 2px solid grey;
-    color: #ffffff;
+    border: 2px solid midnightblue;
+    color: white;
     box-shadow: none;
 }
 .btn.btn-lg.form-reset {
     background: none;
     border-radius: 4px;
-    border: 2px solid grey;
-    color: #555555;
+    border: 2px solid midnightblue;
+    color: midnightblue;
     box-shadow: none;
 }
 
 .alert.alert-danger.form-reset {
     max-width: 100%;
-    padding-left: 100px;
+    padding-left: 90px;
     padding-right: 90px;
     background-color: #f2dede;
     border-color: #ebccd1;
@@ -109,7 +109,7 @@ a:link{
 
 .smallContainer.row{
     max-width: 300px;
-    margin-top:-650px;
+    margin-top:-540px;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -117,7 +117,7 @@ a:link{
 }
 .col-xs-12.col-sm-12.col-md-12 {
     max-width: 100%;
-    color: #555555;
+    color: midnightblue;
 }
 
 [ng-click],

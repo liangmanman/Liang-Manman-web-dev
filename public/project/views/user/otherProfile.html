@@ -1,0 +1,49 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/likes/{{model.type}}/{{model.likeId}}/{{model.otherId}}/information"
+                   class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
+            <a class="navbar-brand">{{model.otherUser.username}}'s Information</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="margin-top: 60px">
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <label>Name:</label>
+            <div class="pull-right">{{model.otherUser.username}}</div>
+        </li>
+        <li class="list-group-item">
+            <label>email:</label>
+            <div class="pull-right">{{model.otherUser.email}}</div>
+        </li>
+
+    </ul>
+
+
+    <form>
+
+    </form>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#/profile/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user">
+                    </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

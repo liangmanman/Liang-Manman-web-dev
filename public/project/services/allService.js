@@ -10,10 +10,33 @@
         var api = {
             findShareMusic: findShareMusic,
             findShareAlbum: findShareAlbum,
+            findLikeById: findLikeById,
+            findSharedUser: findSharedUser,
+            findMusicForAlbum: findMusicForAlbum,
             addLike: addLike
 
         };
         return api;
+
+        function findMusicForAlbum(albumId) {
+            return $http.get("/api/user/"+albumId+"/findMusicForAlbum");
+        }
+
+        function findSharedUser(userId) {
+            var url ="/api/user/" + userId;
+            return $http.get(url);
+        }
+
+        function findLikeById(LikeId, LikeType) {
+            if (LikeType == "music") {
+                console.log("is music");
+                var url = "/api/music/" + LikeId;
+            }
+            else {
+                var url = "/api/album/" + LikeId;
+            }
+            return $http.get(url);
+        }
         
         function findShareMusic() {
             var url = "/api/allMusic";

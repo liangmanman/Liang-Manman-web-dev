@@ -11,12 +11,18 @@
             findLikeMusicByUser: findLikeMusicByUser,
             findLikeAlbumByUser: findLikeAlbumByUser,
             findLikeById: findLikeById,
+            findSharedUser: findSharedUser,
+            findMusicForAlbum: findMusicForAlbum,
             createLike: createLike,
             updateLike: updateLike,
             deleteLike: deleteLike
 
         };
         return api;
+
+        function findMusicForAlbum(albumId) {
+            return $http.get("/api/user/"+albumId+"/findMusicForAlbum");
+        }
 
         function createLike(userId, name, type, description) {
             if (type == "music") {
@@ -70,6 +76,11 @@
             else {
                 var url = "/api/album/" + LikeId;
             }
+            return $http.get(url);
+        }
+
+        function findSharedUser(userId) {
+            var url ="/api/user/" + userId;
             return $http.get(url);
         }
     }

@@ -11,12 +11,19 @@
             findShareMusicByUser: findShareMusicByUser,
             findShareAlbumByUser: findShareAlbumByUser,
             findShareById: findShareById,
+            findMusicForAlbum: findMusicForAlbum,
             createShare: createShare,
             updateShare: updateShare,
+            addMusicToAlbum: addMusicToAlbum,
+            deleteMusicFromAlbum: deleteMusicFromAlbum,
             deleteShare: deleteShare
 
         };
         return api;
+        
+        function findMusicForAlbum(albumId) {
+            return $http.get("/api/user/"+albumId+"/findMusicForAlbum");
+        }
 
         function createShare(userId, name, type, description) {
             if (type == "music") {
@@ -41,6 +48,16 @@
                 var url = "/api/album/" + shareId;
             }
             return $http.put(url, share);
+        }
+        
+        function addMusicToAlbum(musicId, albumId) {
+            var url = "/api/music/" + musicId + "/" + albumId + "/addMusicToAlbum";
+            return $http.put(url);
+        }
+        
+        function deleteMusicFromAlbum(musicId, albumId) {
+            var url = "/api/music/" + musicId + "/" + albumId + "/deleteMusicFromAlbum";
+            return $http.put(url);
         }
 
         function deleteShare(shareId, shareType) {

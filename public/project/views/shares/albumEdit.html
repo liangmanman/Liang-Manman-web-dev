@@ -1,0 +1,76 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/shares" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
+            <a class="navbar-brand">Edit Album</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="margin-top: 60px">
+    <div ng-show="model.success" class="alert alert-success animated fadeInDown" id="hideSuccess">
+        {{model.success}}
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger animated fadeInDown" id="hideError">
+        {{model.error}}
+    </div>
+    <h2>All Music in Album</h2>
+
+    <ul class="list-group">
+        <li ng-repeat="share in model.musics" class="list-group-item">
+            {{share.name}}
+
+            <audio class="pull-right" style="margin-top: -5px" src="{{share.url}}" controls>
+                <p>If you are reading this, it is because your browser does not support the audio element.</p>
+            </audio>
+            <a ng-click="model.deleteMusicFromAlbum(share._id, share.name)" class="pull-right"
+               style="margin-right: 5px">
+                <span class="glyphicon glyphicon glyphicon-trash"></span>
+            </a>
+
+
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="container">
+    <h2>Album Information</h2>
+    <form>
+        <label for="shareName">Name</label>
+        <input ng-model="model.album.name"
+               type="text"
+               class="form-control"
+               id="shareName"
+               placeholder=""/>
+        <label for="Description">Description</label>
+        <textarea ng-model="model.album.description"
+                  placeholder="Description"
+                  class="form-control"
+                  id="Description"
+                  rows="4"></textarea>
+    </form>
+    <a class="btn btn-danger btn-block" ng-click="model.deleteShare()" style="margin-top: 5px">Delete</a>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#/profile/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user">
+                    </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

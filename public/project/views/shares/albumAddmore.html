@@ -1,0 +1,60 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/shares" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
+            <a class="navbar-brand">
+                All My Shares
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container" style="margin-top: 60px">
+    <div ng-show="model.success" class="alert alert-success" id="hideSuccess">
+        {{model.success}}
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger" id="hideError">
+        {{model.error}}
+    </div>
+    <h1>addToAlbum</h1>
+
+    <ul class="list-group">
+        <li ng-repeat="share in model.shareMusics" class="list-group-item">
+            {{share.name}}
+
+            <audio class="pull-right" style="margin-top: -5px" src="{{share.url}}" controls>
+                <p>If you are reading this, it is because your browser does not support the audio element.</p>
+            </audio>
+            <a ng-click="model.addToAlbum(share._id, share.name)" class="pull-right"
+               style="margin-right: 5px">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+
+
+        </li>
+
+    </ul>
+
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#/profile/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user">
+                    </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

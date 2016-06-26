@@ -2,6 +2,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/profile/{{model.userId}}" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
             <a class="navbar-brand">
                 My Shares
             </a>
@@ -22,12 +28,15 @@
     <ul class="list-group">
         <li ng-repeat="share in model.shareMusics" class="list-group-item">
             {{share.name}}
-            <a style="margin-left: 5px" href="#/user/{{model.userId}}/shares/{{share._id}}/play" class="pull-right">
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
-            <a href="#/user/{{model.userId}}/shares/music/{{share._id}}/edit" class="pull-right">
+
+            <audio class="pull-right" style="margin-top: -5px" src="{{share.url}}" controls>
+                <p>If you are reading this, it is because your browser does not support the audio element.</p>
+            </audio>
+            <a href="#/user/{{model.userId}}/shares/music/{{share._id}}/edit" class="pull-right"
+               style="margin-right: 5px">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
+
 
         </li>
 
@@ -41,8 +50,8 @@
     <ul class="list-group">
         <li ng-repeat="share in model.shareAlbums" class="list-group-item">
             {{share.name}}
-            <a style="margin-left: 5px" href="#/user/{{model.userId}}/shares/{{share._id}}/play" class="pull-right">
-                <span class="glyphicon glyphicon-play"></span>
+            <a style="margin-left: 5px" href="#/user/{{model.userId}}/shares/album/{{share._id}}/addmore" class="pull-right">
+                <span class="glyphicon glyphicon-plus"></span>
             </a>
             <a href="#/user/{{model.userId}}/shares/album/{{share._id}}/edit" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>

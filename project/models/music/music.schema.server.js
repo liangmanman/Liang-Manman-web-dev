@@ -9,8 +9,9 @@ module.exports = function () {
         type: String,
         name: String,
         description: String,
+        url: String,
         followers:[{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-        belongsTo: {type: mongoose.Schema.Types.ObjectId, ref: 'Album'},
+        belongsTo: [{type: mongoose.Schema.Types.ObjectId, ref: 'Album'}],
         dataCreate: {type: Date, default: Date.now}
 
     }, {collection: "project.music"});

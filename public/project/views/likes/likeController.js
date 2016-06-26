@@ -9,38 +9,33 @@
 
     function likeInformationController($routeParams, $location, LikeService) {
         var vm = this;
-        vm.updatelike = updatelike;
-        vm.deletelike = deletelike;
         vm.userId = $routeParams.userId;
         vm.likeType = $routeParams.type;
         vm.likeId = $routeParams.likeId;
+        vm.sharerId = $routeParams.sharerId;
+        console.log(vm.sharerId);
 
         function init() {
             LikeService.findLikeById(vm.likeId, vm.likeType)
                 .then(function (response) {
                     vm.like = response.data;
                 });
-            LikeService.findReview(vm.likeId, vm.likeType, vm.userId)
+            LikeService.findSharedUser(vm.sharerId)
                 .then(function (response) {
-                    vm.review = response.data;
-                })
+                    vm.sharedUser = response.data;
+                });
+            if (vm.likeType =="album") {
+                LikeService.findMusicForAlbum(vm.likeId)
+                    .then(function (response) {
+                        vm.musics = response.data;
+                    });
+            }
+
         }
         init();
 
-        function updatelike() {
-            if (vm.like.name === undefined) {
-                vm.error = "music name should be something";
-            }
-            else {
-                LikeService.updatelike(vm.likeId, vm.like)
-                    .then(function (response) {
-                            $location.url("/user/" + vm.userId + "/likes");
-                        },
-                        function (error) {
-                            vm.error = error.data;
-                        });
-            }
-        }
+
+
     }
 
 

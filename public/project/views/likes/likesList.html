@@ -2,6 +2,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/profile/{{model.userId}}" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
             <a class="navbar-brand">
                 My Likes
             </a>
@@ -14,11 +20,11 @@
     <h1>likeMusic</h1>
     <ul class="list-group">
         <li ng-repeat="like in model.likeMusics" class="list-group-item">
-            <a href="#/user/{{model.userId}}/likes/{{like._id}}/detail">{{like.name}}</a>
-            <a style="margin-left: 5px" href="#/user/{{model.userId}}/likes/{{like._id}}/play" class="pull-right">
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
-            <a ng-click="model.deleteLike(like._id, like.type)" class="pull-right">
+            <a href="#/user/{{model.userId}}/likes/music/{{like._id}}/{{like._user}}/information">{{like.name}}</a>
+            <audio class="pull-right" style="margin-top: -5px" src="{{like.url}}" controls>
+                <p>If you are reading this, it is because your browser does not support the audio element.</p>
+            </audio>
+            <a style="margin-right: 5px" ng-click="model.deleteLike(like._id, like.type)" class="pull-right">
                 <span class="glyphicon glyphicon-trash"></span>
             </a>
 
@@ -33,10 +39,7 @@
 
     <ul class="list-group">
         <li ng-repeat="like in model.likeAlbums" class="list-group-item">
-            <a href="#/user/{{model.userId}}/likes/{{like._id}}/detail">{{like.name}}</a>
-            <a style="margin-left: 5px" href="#/user/{{model.userId}}/likes/{{like._id}}/play" class="pull-right">
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
+            <a href="#/user/{{model.userId}}/likes/album/{{like._id}}/{{like._user}}/information">{{like.name}}</a>
             <a ng-click="model.deleteLike(like._id)" class="pull-right">
                 <span class="glyphicon glyphicon-trash"></span>
             </a>

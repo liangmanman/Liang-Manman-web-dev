@@ -6,7 +6,24 @@
         .module("WebAppMaker")
         .controller("LoginController", LoginController)
         .controller("ProfileController", ProfileController)
-        .controller("RegisterController", RegisterController);
+        .controller("RegisterController", RegisterController)
+        .controller("otherProfileController", otherProfileController);
+
+    function otherProfileController($location, $routeParams, $rootScope, UserService) {
+        var vm = this;
+        vm.userId = $routeParams.userId;
+        vm.otherId = $routeParams.otherId;
+        vm.type = $routeParams.type;
+        vm.likeId = $routeParams.likeId;
+
+        function init() {
+            UserService.findUserById(vm.otherId)
+                .then(function (response) {
+                    vm.otherUser = response.data;
+                })
+        }
+        init()
+    }
 
     function RegisterController($location, $rootScope, UserService) {
         var vm = this;
@@ -15,12 +32,15 @@
         function register(username, password, verifyPassword) {
             if (username === undefined) {
                 vm.error = "Can't register; please check your username";
+                $("#hideError").fadeIn(500).delay(1000).fadeOut(500);
             }
             else if (password !== verifyPassword) {
                 vm.error = "Can't register; please make sure password and verifyPassword are the same";
+                $("#hideError").fadeIn(500).delay(1000).fadeOut(500);
             }
             else if (password === undefined) {
                 vm.error = "Can't register; please make sure your password is valid";
+                $("#hideError").fadeIn(500).delay(1000).fadeOut(500);
             }
             else {
                 UserService
@@ -31,6 +51,7 @@
                         },
                         function (error) {
                             vm.error = error.data;
+                            $("#hideError").fadeIn(500).delay(1000).fadeOut(500);
                         })
 
             }
@@ -85,9 +106,11 @@
                 .then(
                     function (response) {
                         vm.success = "User successfully updated";
+                        $("#hideSuccess").fadeIn(500).delay(1000).fadeOut(500);
                     },
                     function (error) {
                         vm.error = error.data;
+                        $("#hideError").fadeIn(500).delay(1000).fadeOut(500);
                     });
         }
 
@@ -99,6 +122,7 @@
                     },
                     function (error) {
                         vm.error = error.data;
+                        $("#hideError").fadeIn(500).delay(1000).fadeOut(500);
                     });
         }
     }
@@ -119,6 +143,7 @@
                     }
                     , function (error) {
                         vm.error = error.data;
+                        $("#hideError").fadeIn(500).delay(1000).fadeOut(500);
                     }
                 );
         }

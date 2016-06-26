@@ -47,9 +47,21 @@
                 controllerAs: "model"
             })
             //4.3 √
-            .when("/user/:userId/shares/:type/:shareId/edit", {
+            .when("/user/:userId/shares/music/:shareId/edit", {
                 templateUrl: "views/shares/shareEdit.html",
                 controller: "shareEditController",
+                controllerAs: "model"
+            })
+            //4.3.1 √
+            .when("/user/:userId/shares/album/:shareId/edit", {
+                templateUrl: "views/shares/albumEdit.html",
+                controller: "albumEditController",
+                controllerAs: "model"
+            })
+            //4.3.2 √
+            .when("/user/:userId/shares/album/:shareId/addmore", {
+                templateUrl: "views/shares/albumAddmore.html",
+                controller: "albumAddController",
                 controllerAs: "model"
             })
             //5.1 √
@@ -59,21 +71,33 @@
                 controllerAs: "model"
             })
             //5.2 √
-            .when("/user/:userId/likes/:type/:likeId/information", {
+            .when("/user/:userId/likes/:type/:likeId/:sharerId/information", {
                 templateUrl: "views/likes/likeInformation.html",
                 controller: "likeInformationController",
                 controllerAs: "model"
             })
-            //6 √
+            //6.1 √
             .when("/user/:userId/findAll", {
                 templateUrl: "views/mainView/AllShares.html",
                 controller: "findAllController",
+                controllerAs: "model"
+            })
+            //6.2 √
+            .when("/user/:userId/findAll/:type/:shareId/:sharerId/information", {
+                templateUrl: "views/mainView/allShareInformation.html",
+                controller: "shareInformationController",
                 controllerAs: "model"
             })
             //7 √
             .when("/guest", {
                 templateUrl: "views/mainView/AllShares.html",
                 controller: "findAllController",
+                controllerAs: "model"
+            })
+            //8 √
+            .when("/user/:userId/theOther/:otherId/:type/:likeId", {
+                templateUrl: "views/user/otherProfile.html",
+                controller: "otherProfileController",
                 controllerAs: "model"
             })
         

@@ -8,41 +8,56 @@
                         </span>
                 </a>
             </p>
-            <a class="navbar-brand">Edit Like</a>
-            <p class="navbar-text pull-right">
-                <a ng-click="model.updateLike()" class="navbar-link">
-                        <span class="glyphicon glyphicon-ok">
-                        </span>
-                </a>
-            </p>
+            <a class="navbar-brand">Like Information</a>
         </div>
     </div>
 </nav>
 
 <div class="container" style="margin-top: 60px">
 
-    <div ng-show="model.success" class="alert alert-success">
-        {{model.success}}
-    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <label>Name:</label>
+            <div class="pull-right">{{model.like.name}}</div>
+        </li>
+        <li class="list-group-item">
+            <label>Type:</label>
+            <div class="pull-right">{{model.like.type}}</div>
+        </li>
+        <li class="list-group-item">
+            <label>Shared By:</label>
+            <a href="#/user/{{model.userId}}/theOther/{{model.sharedUser._id}}/{{model.likeType}}/{{model.likeId}}"
+               class="pull-right">{{model.sharedUser.username}}</a>
+        </li>
+        <li class="list-group-item">
+            <label>Description:</label>
+            <div class="pull-right">{{model.like.description}}</div>
+        </li>
 
-    <div ng-show="model.error" class="alert alert-danger">
-        {{model.error}}
-    </div>
-    <h2>{{model.like.name}}</h2>
+    </ul>
+
 
     <form>
-        <a class="btn btn-danger btn-block" ng-click="model.deleteLike()" style="margin-top: 5px">Delete</a>
 
     </form>
+    <ul class="list-group">
+        <li ng-repeat="share in model.musics" class="list-group-item">
+            {{share.name}}
+
+            <audio class="pull-right" style="margin-top: -5px" src="{{share.url}}" controls>
+                <p>If you are reading this, it is because your browser does not support the audio element.</p>
+            </audio>
+        </li>
+
+    </ul>
+
 </div>
+
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-header">
-            <p class="navbar-text pull-left">
-                <span class="glyphicon glyphicon-share-alt"></span>
-            </p>
             <p class="navbar-text pull-right">
                 <a href="#/profile/{{model.userId}}">
                     <span class="glyphicon glyphicon-user">

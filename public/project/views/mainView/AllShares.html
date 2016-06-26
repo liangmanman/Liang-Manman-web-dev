@@ -2,6 +2,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a ng-click="model.goBack()" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
             <a class="navbar-brand">
                 All Shares In Web-dev Music-Share
             </a>
@@ -21,11 +27,11 @@
 
     <ul class="list-group">
         <li ng-repeat="share in model.shareMusics" class="list-group-item">
-            <a href="#/user/{{model.userId}}/shares/{{share._id}}/detail">{{share.name}}</a>
-            <a style="margin-left: 5px" href="don't know to to play music" class="pull-right">
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
-            <a ng-click="model.addLike(share._id, share.type, share.name)" class="pull-right">
+            <a ng-click="model.getInformation(share.type, share._id, share._user)">{{share.name}}</a>
+            <audio class="pull-right" style="margin-top: -5px" src="{{share.url}}" controls>
+                <p>If you are reading this, it is because your browser does not support the audio element.</p>
+            </audio>
+            <a style="margin-right: 5px" ng-click="model.addLike(share._id, share.type, share.name)" class="pull-right">
                 <span style="color:cornflowerblue" class="glyphicon glyphicon-heart"></span>
             </a>
 
@@ -40,10 +46,7 @@
 
     <ul class="list-group">
         <li ng-repeat="share in model.shareAlbums" class="list-group-item">
-            <a href="#/user/{{model.userId}}/shares/{{share._id}}/detail">{{share.name}}</a>
-            <a style="margin-left: 5px" href="don't know to to play music" class="pull-right">
-                <span class="glyphicon glyphicon-play"></span>
-            </a>
+            <a ng-click="model.getInformation(share.type, share._id, share._user)">{{share.name}}</a>
             <a ng-click="model.addLike(share._id, share.type, share.name)" class="pull-right">
                 <span style="color:cornflowerblue" class="glyphicon glyphicon-heart"></span>
             </a>
