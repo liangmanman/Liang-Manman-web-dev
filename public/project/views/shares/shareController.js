@@ -10,16 +10,19 @@
 
     function shareNewController($routeParams, $location, ShareService) {
         var vm = this;
-        vm.createWebsite = createWebsite;
+        vm.createShare = createShare;
         vm.userId = $routeParams.userId;
         vm.shareId = $routeParams.shareId;
 
-        function createShare(name) {
+        function createShare(name, type, description) {
             if (name === undefined) {
                 vm.error = "Can't add without name";
             }
+            else if (type == undefined)    {
+                vm.error = "Have to choose a type";
+            } 
             else {
-                ShareService.createShare(vm.userId, name)
+                ShareService.createShare(vm.userId, name, type, description)
                     .then(function (response) {
                             $location.url("/user/" + vm.userId + "/shares");
                         },
@@ -36,10 +39,11 @@
         vm.updateShare = updateShare;
         vm.deleteShare = deleteShare;
         vm.userId = $routeParams.userId;
+        vm.shareType = $routeParams.type;
         vm.shareId = $routeParams.shareId;
 
         function init() {
-            ShareService.findShareById(vm.shareId)
+            ShareService.findShareById(vm.shareId, vm.shareType)
                 .then(function (response) {
                     vm.share = response.data;
                 });
@@ -47,13 +51,13 @@
         init();
 
         function deleteShare() {
-            ShareService.deleteShare(vm.shareId);
+            ShareService.deleteShare(vm.shareId, vm.shareType);
             $location.url("/user/" + vm.userId + "/shares");
         }
 
         function updateShare() {
             if (vm.share.name === undefined) {
-                vm.error = "share name should be something";
+                vm.error = "music name should be something";
             }
             else {
                 ShareService.updateShare(vm.shareId, vm.share)
@@ -72,10 +76,15 @@
         var vm = this;
         function init() {
             vm.userId = $routeParams.userId;
-            ShareService.findWebsitesByUser(vm.userId)
+            ShareService.findShareMusicByUser(vm.userId)
                 .then(function (response) {
-                    vm.shares = response.data;
+                    vm.shareMusics = response.data;
                 });
+            ShareService.findShareAlbumByUser(vm.userId)
+                .then(function (response) {
+                    vm.shareAlbums = response.data;
+                });
+            
         }
         init();
     }

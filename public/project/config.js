@@ -37,39 +37,45 @@
             //4.1 √
             .when("/user/:userId/shares", {
                 templateUrl: "views/shares/sharesList.html",
-                controller: "sharesListController",
+                controller: "shareListController",
                 controllerAs: "model"
             })
-            // //4.2 √
-            // .when("/user/:userId/shares/new", {
-            //     templateUrl: "views/shares/shareNew.html",
-            //     controller: "sharesNewController",
-            //     controllerAs: "model"
-            // })
-            // //4.3 √
-            // .when("/user/:userId/shares/:shareId", {
-            //     templateUrl: "views/shares/shareEdit.html",
-            //     controller: "sharesEditController",
-            //     controllerAs: "model"
-            // })
-            // //5.1 √
-            // .when("/user/:userId/likes", {
-            //     templateUrl: "views/likes/likesList.html",
-            //     controller: "likesListController",
-            //     controllerAs: "model"
-            // })
-            // //5.2 √
-            // .when("/user/:userId/likes/new", {
-            //     templateUrl: "views/likes/likeNew.html",
-            //     controller: "likesNewController",
-            //     controllerAs: "model"
-            // })
-            // //5.3 √
-            // .when("/user/:userId/likes:likeId", {
-            //     templateUrl: "views/likes/likeEdit.html",
-            //     controller: "likeEditController",
-            //     controllerAs: "model"
-            // })
+            //4.2 √
+            .when("/user/:userId/shares/new", {
+                templateUrl: "views/shares/shareNew.html",
+                controller: "shareNewController",
+                controllerAs: "model"
+            })
+            //4.3 √
+            .when("/user/:userId/shares/:type/:shareId/edit", {
+                templateUrl: "views/shares/shareEdit.html",
+                controller: "shareEditController",
+                controllerAs: "model"
+            })
+            //5.1 √
+            .when("/user/:userId/likes", {
+                templateUrl: "views/likes/likesList.html",
+                controller: "likesListController",
+                controllerAs: "model"
+            })
+            //5.2 √
+            .when("/user/:userId/likes/:type/:likeId/information", {
+                templateUrl: "views/likes/likeInformation.html",
+                controller: "likeInformationController",
+                controllerAs: "model"
+            })
+            //6 √
+            .when("/user/:userId/findAll", {
+                templateUrl: "views/mainView/AllShares.html",
+                controller: "findAllController",
+                controllerAs: "model"
+            })
+            //7 √
+            .when("/guest", {
+                templateUrl: "views/mainView/AllShares.html",
+                controller: "findAllController",
+                controllerAs: "model"
+            })
         
         ;
 

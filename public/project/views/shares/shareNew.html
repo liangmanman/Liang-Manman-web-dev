@@ -1,0 +1,62 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/shares" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
+            <a class="navbar-brand">New Share</a>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.createShare(name, type, description)"
+                   class="navbar-link">
+                        <span class="glyphicon glyphicon-ok">
+                        </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="margin-top: 70px">
+
+    <div ng-if="model.error" class="alert alert-danger animated fadeInDown">
+        {{model.error}}
+    </div>
+    <form>
+        <label for="name">Name</label>
+        <input  ng-model="name"
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Name">
+        <label style="display: block; margin-top: 10px;"
+               for="type">Type</label>
+        <select ng-model="type" id="type" style=" margin-bottom: 10px">
+            <option value="music">Music</option>
+            <option value="album">Album</option>
+        </select>
+        <label style="display: block" for="description">Description</label>
+        <textarea ng-model="description"
+                  placeholder="Description"
+                  class="form-control"
+                  id="description"
+                  rows="4"></textarea>
+
+    </form>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#/profile/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user">
+                    </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

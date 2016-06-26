@@ -1,0 +1,62 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                My Likes
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container" style="margin-top: 40px">
+    <h1>likeMusic</h1>
+    <ul class="list-group">
+        <li ng-repeat="like in model.likeMusics" class="list-group-item">
+            <a href="#/user/{{model.userId}}/likes/{{like._id}}/detail">{{like.name}}</a>
+            <a style="margin-left: 5px" href="#/user/{{model.userId}}/likes/{{like._id}}/play" class="pull-right">
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+            <a ng-click="model.deleteLike(like._id, like.type)" class="pull-right">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="container" style="margin-top: 40px">
+    <h1>likeAlbums</h1>
+
+    <ul class="list-group">
+        <li ng-repeat="like in model.likeAlbums" class="list-group-item">
+            <a href="#/user/{{model.userId}}/likes/{{like._id}}/detail">{{like.name}}</a>
+            <a style="margin-left: 5px" href="#/user/{{model.userId}}/likes/{{like._id}}/play" class="pull-right">
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+            <a ng-click="model.deleteLike(like._id)" class="pull-right">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+
+        </li>
+
+    </ul>
+
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a href="#/profile/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user">
+                    </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

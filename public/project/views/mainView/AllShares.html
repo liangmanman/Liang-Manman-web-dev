@@ -1,0 +1,68 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                All Shares In Web-dev Music-Share
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="margin-top: 60px">
+    <div ng-show="model.success" class="alert alert-success" id="hideSuccess">
+        {{model.success}}
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger" id="hideError">
+        {{model.error}}
+    </div>
+    <h1>allShareMusic</h1>
+
+    <ul class="list-group">
+        <li ng-repeat="share in model.shareMusics" class="list-group-item">
+            <a href="#/user/{{model.userId}}/shares/{{share._id}}/detail">{{share.name}}</a>
+            <a style="margin-left: 5px" href="don't know to to play music" class="pull-right">
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+            <a ng-click="model.addLike(share._id, share.type, share.name)" class="pull-right">
+                <span style="color:cornflowerblue" class="glyphicon glyphicon-heart"></span>
+            </a>
+
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="container" >
+    <h1>allShareAlbums</h1>
+
+    <ul class="list-group">
+        <li ng-repeat="share in model.shareAlbums" class="list-group-item">
+            <a href="#/user/{{model.userId}}/shares/{{share._id}}/detail">{{share.name}}</a>
+            <a style="margin-left: 5px" href="don't know to to play music" class="pull-right">
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+            <a ng-click="model.addLike(share._id, share.type, share.name)" class="pull-right">
+                <span style="color:cornflowerblue" class="glyphicon glyphicon-heart"></span>
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right">
+                <a ng-click="model.goToProfile()">
+                    <span class="glyphicon glyphicon-user">
+                    </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

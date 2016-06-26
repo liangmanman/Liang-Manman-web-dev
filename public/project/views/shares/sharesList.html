@@ -16,15 +16,36 @@
 </nav>
 
 
-<div class="container">
+<div class="container" style="margin-top: 40px">
+    <h1>shareMusic</h1>
 
     <ul class="list-group">
-        <li ng-repeat="share in model.shares" class="list-group-item">
-            // TODO:NEED TO REVISE HERE, DISTINGISH MUSIC AND ALBUMS
-            <a href="#/user/{{model.userId}}/shares/{{website._id}}">{{website.name}}</a>
-            <a href="#/user/{{model.userId}}/shares/{{website._id}}/edit" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
+        <li ng-repeat="share in model.shareMusics" class="list-group-item">
+            {{share.name}}
+            <a style="margin-left: 5px" href="#/user/{{model.userId}}/shares/{{share._id}}/play" class="pull-right">
                 <span class="glyphicon glyphicon-play"></span>
+            </a>
+            <a href="#/user/{{model.userId}}/shares/music/{{share._id}}/edit" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="container" style="margin-top: 40px">
+    <h1>shareAlbums</h1>
+
+    <ul class="list-group">
+        <li ng-repeat="share in model.shareAlbums" class="list-group-item">
+            {{share.name}}
+            <a style="margin-left: 5px" href="#/user/{{model.userId}}/shares/{{share._id}}/play" class="pull-right">
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+            <a href="#/user/{{model.userId}}/shares/album/{{share._id}}/edit" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
             </a>
         </li>
 

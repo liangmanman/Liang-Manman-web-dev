@@ -1,9 +1,8 @@
+
 input {
     margin-bottom: 5px;
 }
-/*.container {*/
-    /*padding-top: 60px;*/
-/*}*/
+
 p.navbar-text.pull-right {
     margin-right: 15px;
 }
@@ -23,6 +22,10 @@ span.glyphicon-user {
     color: cornflowerblue;
 }
 span.glyphicon-play {
+    color: cornflowerblue;
+}
+
+span.glyphicon {
     color: cornflowerblue;
 }
 
@@ -116,3 +119,15 @@ a:link{
     max-width: 100%;
     color: #555555;
 }
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}
+
+.list-group-item {
+    margin-top: 1px;
+}
+
+
