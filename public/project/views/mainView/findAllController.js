@@ -52,7 +52,17 @@
 
         }
         init();
-        
+
+        (function() {
+            var cx = '009718377037043675507:3kqg7wjfrfs';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+        })();
+
         function getInformation(Type, shareId, sharerId) {
             if (vm.userId == undefined) {
                 vm.error = "can't look at information without Account; Please login first";

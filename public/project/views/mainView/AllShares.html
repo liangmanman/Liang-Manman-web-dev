@@ -12,7 +12,7 @@
                 All Shares In Music-Share
             </a>
             <form class="pull-right">
-                <input type="text" name="search" placeholder="Search..">
+                <gcse:searchbox></gcse:searchbox>
             </form>
 
         </div>
@@ -24,26 +24,9 @@
 
 <div class="container" style="margin-top: 60px">
 
-    <script>
-        (function() {
-            var cx = '009718377037043675507:g-5m82krgx4';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-        })();
-    </script>
-    <gcse:search>
-        <form
-                name="search" onSubmit="return findInPage(this.string.value);">
-            <div align="center"> <p><font size=3> <input name="string"
-                                                         type="text" size=15 onChange="n = 0;"> </font> <input
-                    type="submit" value="Search Page"> </p> </div>
-        </form>
+        <gcse:searchresults></gcse:searchresults>
 
-    </gcse:search>
+
     <div ng-show="model.success" class="alert alert-success" id="hideSuccess">
         {{model.success}}
     </div>
