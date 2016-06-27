@@ -12,10 +12,15 @@ module.exports = function() {
         updateUser:updateUser,
         findUserByCredentials:findUserByCredentials,
         findUserByUsername: findUserByUsername,
-        findUserById: findUserById
+        findUserById: findUserById,
+        findAllUsers: findAllUsers
 
     };
     return api;
+    
+    function findAllUsers() {
+        return User.find({type: { $ne:"admin"}});
+    }
 
     function createUser(user) {
         User.create(user);

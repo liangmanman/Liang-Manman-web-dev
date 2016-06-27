@@ -13,10 +13,20 @@
             findLikeById: findLikeById,
             findSharedUser: findSharedUser,
             findMusicForAlbum: findMusicForAlbum,
-            addLike: addLike
+            addLike: addLike,
+            deleteMusic: deleteMusic,
+            deleteAlbum: deleteAlbum
 
         };
         return api;
+
+        function deleteMusic(musicId) {
+            return $http.delete("/api/music/" + musicId);
+        }
+
+        function deleteAlbum(albumId) {
+            return $http.delete("/api/album/" + albumId);
+        }
 
         function findMusicForAlbum(albumId) {
             return $http.get("/api/user/"+albumId+"/findMusicForAlbum");

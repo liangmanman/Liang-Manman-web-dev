@@ -100,6 +100,12 @@
                 controller: "otherProfileController",
                 controllerAs: "model"
             })
+            //9 √
+            .when("/admin/:userId", {
+                templateUrl: "views/user/admin.html",
+                controller: "adminController",
+                controllerAs: "model"
+            })
         
         ;
 

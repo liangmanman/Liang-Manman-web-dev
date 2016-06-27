@@ -7,7 +7,67 @@
         .controller("LoginController", LoginController)
         .controller("ProfileController", ProfileController)
         .controller("RegisterController", RegisterController)
-        .controller("otherProfileController", otherProfileController);
+        .controller("otherProfileController", otherProfileController)
+        .controller("adminController", adminController);
+    
+    function adminController($location, $routeParams, $rootScope, UserService, AllService) {
+        var vm = this;
+        vm.deleteUser = deleteUser;
+        vm.deleteMusic = deleteMusic;
+        vm.deleteAlbum = deleteAlbum;
+        vm.userId = $routeParams.userId;
+        function init() {
+            UserService
+                .getAllUsers()
+                .then(function (response) {
+                    vm.users = response.data;
+                });
+            AllService
+                .findShareMusic()
+                .then(function (response) {
+                    vm.musics = response.data;
+                });
+            AllService
+                .findShareAlbum()
+                .then(function (response) {
+                    vm.albums = response.data;
+                })
+
+        }
+        init();
+        
+        function deleteMusic(musicId) {
+            AllService
+                .deleteMusic(musicId)
+                .then(function (response) {
+                    init();
+                });
+        }
+        
+        function deleteAlbum(albumId) {
+            AllService
+                .deleteAlbum(albumId)
+                .then(function (response) {
+                    init();
+                });
+        }
+
+        function deleteUser(userId) {
+            UserService
+                .deleteUser(userId)
+                .then(function (response) {
+                    vm.success = "Successfully delete User";
+                    $("#hideSuccess").fadeIn(500).delay(1000).fadeOut(500);
+                    init();
+                }, function (error) {
+                    vm.error = error;
+                    $("#hideError").fadeIn(500).delay(1000).fadeOut(500);
+                })
+        }
+        
+        
+        
+    }
 
     function otherProfileController($location, $routeParams, $rootScope, UserService) {
         var vm = this;
@@ -139,7 +199,13 @@
                     function (response) {
                         var user = response.data;
                         $rootScope.currentUser = user;
-                        $location.url("/profile/" + user._id);
+                        if (user.type != "admin") {
+                            $location.url("/profile/" + user._id);
+                        }
+                        else {
+                            $location.url("/admin/" + user._id);
+                        }
+
                     }
                     , function (error) {
                         vm.error = error.data;

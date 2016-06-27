@@ -18,9 +18,14 @@
             login: login,
             logout: logout,
             register: register,
-            checkLoggedin: checkLoggedin
+            checkLoggedin: checkLoggedin,
+            getAllUsers: getAllUsers
         };
         return api;
+        
+        function getAllUsers() {
+            return $http.get("/api/admin/allUsers");
+        }
 
         function checkLoggedin() {
             return $http.get("/api/loggedin");

@@ -15,12 +15,25 @@ module.exports = function(app, models) {
     app.post("/api/user", createUser);
     app.get("/api/user", getUsers);
     app.get("/api/user/:userId", findUserById);
+    app.get('/api/admin/allUsers', findAllUsers);
     app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", authenticate, deleteUser);
+    app.delete("/api/user/:userId", deleteUser);
     app.post('/api/login', passport.authenticate('wam'), login);
     app.post('/api/logout', logout);
     app.post('/api/register', register);
     app.get('/api/loggedin', loggedin);
+
+    function findAllUsers(req, res) {
+        userModel.findAllUsers()
+            .then(function(users){
+                    res.json(users);
+
+                },
+                function(error){
+                    res.status(400).send(error);
+                }
+            )
+    }
 
     function authenticate(req, res, next) {
         if (!req.isAuthenticated()) {
@@ -58,11 +71,6 @@ module.exports = function(app, models) {
                     else {
                         return done(null, false);
                     }
-                    // if(user.username === username && user.password === password) {
-                    //     return done(null, user);
-                    // } else {
-                    //     return done(null, false);
-                    // }
                 },
                 function(err) {
                     if (err) { return done(err); }
