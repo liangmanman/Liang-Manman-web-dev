@@ -13,10 +13,15 @@ module.exports = function() {
         findUserByCredentials:findUserByCredentials,
         findUserByUsername: findUserByUsername,
         findUserById: findUserById,
-        findAllUsers: findAllUsers
+        findAllUsers: findAllUsers,
+        findUserByFacebookId: findUserByFacebookId
 
     };
     return api;
+
+    function findUserByFacebookId(facebookId) {
+        return User.findOne({'facebook.id': facebookId});
+    }
     
     function findAllUsers() {
         return User.find({type: { $ne:"admin"}});

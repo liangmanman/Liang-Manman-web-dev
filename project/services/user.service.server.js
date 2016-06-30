@@ -8,9 +8,22 @@ module.exports = function(app, models) {
 
     var LocalStrategy = require('passport-local').Strategy;
     passport.use('wam',   new LocalStrategy(localStrategy));
+    var FacebookStrategy = require('passport-facebook').Strategy;
+
+
     var bcrypt = require('bcrypt-nodejs');
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
+
+    app.get('/auth/facebook/callback',
+        passport
+            .authenticate('facebook', {
+                    successRedirect: '/project/beginning.html#/profile',
+                    failureRedirect: '/project/beginning.html#/login'
+                }
+            )
+    );
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
     app.post("/api/user", createUser);
     app.get("/api/user", getUsers);
@@ -22,6 +35,42 @@ module.exports = function(app, models) {
     app.post('/api/logout', logout);
     app.post('/api/register', register);
     app.get('/api/loggedin', loggedin);
+
+    var facebookConfig = {
+        clientID     : process.env.FACEBOOK_CLIENT_ID,
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+    };
+
+    function facebookStrategy(token, refreshToken, profile, done) {
+        var id = profile.id;
+        userModel
+            .findUserByFacebookId(id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var user = {
+                            username: profile.displayName.replace(/ /g, ''),
+                            facebook: {
+                                id: profile.id,
+                                displayName: profile.displayName
+                            }
+                        };
+                        return userModel
+                            .createUser(user);
+                    }
+                }
+            )
+            .then(
+                function (user) {
+                    return done(null, user);
+                }
+            );
+    }
+
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
     function findAllUsers(req, res) {
         userModel.findAllUsers()
